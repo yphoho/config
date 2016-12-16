@@ -1,0 +1,8 @@
+http://man.lupaworld.com/content/other/Linux/Linux_website/%B3%CC%D0%F2%C9%E8%BC%C6/Linux%CF%C2%B5%C4OpenGL%B1%E0%B3%CC%A1%A1.htm
+http://wiki.ubuntu-tw.org/index.php?title=Howto_Install_OpenGL_Development_Environment
+
+
+sudo apt-get install libgl1-mesa-dev
+sudo apt-get install libglu1-mesa-dev
+sudo apt-get install libglut3-dev
+

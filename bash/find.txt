@@ -1,0 +1,64 @@
+   OPERATORS
+       Listed in order of decreasing precedence:
+
+       ( expr )
+              Force precedence.  Since parentheses are special to  the  shell,
+              you  will  normally need to quote them.  Many of the examples in
+              this manual page use backslashes  for  this  purpose:  `\(...\)'
+              instead of `(...)'.
+
+       ! expr True  if  expr  is false.  This character will also usually need
+              protection from interpretation by the shell.
+
+       -not expr
+              Same as ! expr, but not POSIX compliant.
+
+       expr1 expr2
+              Two expressions in a row are taken to be joined with an  implied
+              "and"; expr2 is not evaluated if expr1 is false.
+
+       expr1 -a expr2
+              Same as expr1 expr2.
+
+       expr1 -and expr2
+              Same as expr1 expr2, but not POSIX compliant.
+
+       expr1 -o expr2
+              Or; expr2 is not evaluated if expr1 is true.
+
+       expr1 -or expr2
+              Same as expr1 -o expr2, but not POSIX compliant.
+
+       expr1 , expr2
+              List;  both  expr1 and expr2 are always evaluated.  The value of
+              expr1 is discarded; the value of the list is the value of expr2.
+              The  comma operator can be useful for searching for several dif‐
+              ferent types of thing, but traversing the  filesystem  hierarchy
+              only  once.  The -fprintf action can be used to list the various
+              matched items into several different output files.
+
+
+       -name pattern
+              Base of  file  name  (the  path  with  the  leading  directories
+              removed)  matches  shell  pattern  pattern.   The metacharacters
+              (`*', `?', and `[]') match a `.' at the start of the  base  name
+              (this is a change in findutils-4.2.2; see section STANDARDS CON‐
+              FORMANCE below).  To ignore a directory and the files under  it,
+              use  -prune; see an example in the description of -path.  Braces
+              are not recognised as being special, despite the fact that  some
+              shells  including  Bash  imbue  braces with a special meaning in
+              shell patterns.  The filename matching is performed with the use
+              of  the  fnmatch(3)  library function.   Don't forget to enclose
+              the pattern in quotes in order to protect it from  expansion  by
+              the shell.
+
+
+       -regex pattern
+              File  name  matches regular expression pattern.  This is a match
+              on the whole path, not a search.  For example, to match  a  file
+              named `./fubar3', you can use the regular expression `.*bar.' or
+              `.*b.*3', but not `f.*r3'.  The regular  expressions  understood
+              by  find  are by default Emacs Regular Expressions, but this can
+              be changed with the -regextype option.
+
+

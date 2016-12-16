@@ -1,0 +1,13 @@
+Ubuntu里，PPA代表一种非稳定版本到发布，喜欢尝试鲜到人一般会加入很多PPA源。
+关于PPA到详细说明，可以参考https://help.launchpad.net/Packaging/PPA
+介绍两个命令，用于添加和删除PPA源
+添加一个PPA源
+sudo add-apt-repository ppa:user/ppa-name
+如添加cairo-dock到weekly update源
+sudo add-apt-repository ppa:cairo-dock-team/weekly/ubuntu 
+
+下边的好像不好用，好像是可以用ppa-purge
+删除一个PPA源
+sudo add-apt-repository -r ppa:user/ppa-name
+sudo add-apt-repository -r ppa:cairo-dock-team/weekly/ubuntu 
+

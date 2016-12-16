@@ -1,0 +1,4 @@
+sudo aptitude install language-pack-zh
+
+如果只是在server上用的话，似乎不需要装gnome下的包:
+sudo aptitude install language-pack-gnome-zh

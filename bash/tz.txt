@@ -1,0 +1,30 @@
+tzselect
+man tzselect
+
+Note that tzselect will not actually change the timezone for you. Use 'dpkg-reconfigure tzdata' to achieve this.
+
+
+
+http://blog.creke.net/745.html
+
+一般国外的VPS的时区设置都是美国时区。如果要更改时区，可以分为以下几类进行查看和修改。
+查看系统时区：
+date -R
+更改系统时区：
+cp /usr/share/zoneinfo/Asia/Hong_Kong /etc/localtime
+更改MySQL时区：
+在my.ini的[mysqld]下面加上：
+default-time-zone=+8:00
+更改PHP时区：
+1.修改PHP.ini
+date.timezone = Asia/Hong_Kong
+2.修改.htaccess文件
+php_value date.timezone Asia/Hong_Kong
+或者 
+SetEnv TZ Asia/Hong_Kong
+3.修改PHP代码
+date_default_timezone_set(’Asia/Hong_Kong’);
+或者 
+ini_set(’date.timezone’,'Asia/Hong_Kong’);
+
+

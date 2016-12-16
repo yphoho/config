@@ -1,0 +1,11 @@
+http://www.mac52ipod.cn/post/speed-up-apple-itunes-download-speed-from-app-store-by-dns.php
+苹果为 App Store 准备了 a1.phobos.apple.com 到 a2000.phobos.apple.com 这么一群服务器（和 CDN ？），美国、欧洲、日韩、港澳……就是没在 GDP 第二牛逼国部署。
+在我使用的北京电信，173.223.52.163 这个 ip 最快（219.76.10.14、202.175.5.104 也很快）。你要做的是先验证我在北京电信用起来速度很快的这个 ip 在你那是否同样适用。所以应该先 ping 这个 173.223.52.163 
+如果你得到的结果像上面第二张图那样延时几十毫秒，那直接点击下面的链接下载 hosts 修改文件(http://www.mac52ipod.cn/attachment.php?fid=3222)。
+如果延时很大，再 ping 一下上面括号里的两个 ip。还不行你就得依次 ping a1.phobos.apple.com、a2.phobos.apple.com …… 以此类推。方式和上面的 ping ip 地址一样。每次都会返回这个网址的对应 ip 和延时。找到延时几十毫秒的，记住它的 ip。然后，下载上面那个 txt 文件，打开并把里面的 173.223.52.163 全部换成你找到的 ip。
+
+
+http://dns.v2ex.com/
+另一种方法，修改dns服务器为：
+178.79.131.110
+

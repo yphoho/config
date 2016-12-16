@@ -1,0 +1,26 @@
+在当前目录将.h和.c以及.cpp文件提取出来做成tags文件：
+find ./ -name "*.[cChH]" | etags -
+find ./ -name "*.cpp" -exec etags -a {} \;
+或者：
+find ./ -type f -regex "\(.*\.h$\)\|\(.*\.c\(pp\)?$\)" | etags -
+或者：
+find ./ -name "*.[cChH]" -o -name "*.cpp" | etags -
+
+
+
+将创建好的tag表通知emacs:
+    M-x visit-tags-table
+
+
+使用:
+M-. ：跳至相应的函数定义处；
+M-* ：返回刚才的函数名处；
+C-u M-. ：如果emacs找错了，找下一个；
+M-Tab ：自动补齐函数名；
+
+
+让emacs自动读取tag文件内容:
+在~/.emacs文件中类似如下内容:
+(setq tags-file-name "~/project/src/TAGS")
+
+

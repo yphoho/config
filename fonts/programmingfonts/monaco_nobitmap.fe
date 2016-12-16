@@ -1,0 +1,4 @@
+#!/usr/bin/fontforge
+Open("Monaco_Linux.ttf");
+Generate("Monaco_Linux-nobitmap.ttf");
+Close();

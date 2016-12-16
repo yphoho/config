@@ -1,0 +1,4 @@
+http://www.linuxprogrammingblog.com/all-about-linux-signals?page=6
+
+http://heikezhi.com/2011/07/25/every-programmer-should-read-the-source-code-of-abort/
+

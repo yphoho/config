@@ -1,0 +1,27 @@
+http://www.unixmen.com/linux-tutorials/1799-saving-session-terminal-states-with-screen-command
+
+Once you have a basic understanding of how screen works, try typing in a few commands or running a basic script and then close the terminal. To reopen it you simply type “screen –ls” to find your previous session name and “screen –r sessionname” to reattach the session. The script will still be running and none of the work has been lost.
+
+
+To enter into screens management controls you will need to press ctrl+a followed by the correct key for the action you want to take. Below are a few of the main keys you will need to memorize in order to use screen.
+ 
+c = New window
+k = Destroy window. If there are no other windows open it will destroy the session.
+n = Switch between windows.
+[ = Scroll up terminal history using the arrow keys or page up, page down.
+C = Clear window
+d = Detach screen session and go back to the regular terminal
+If at any point you get stuck or you’ve forgotten a key which you wanted to use, simply pressing ctrl + a and then pressing h will bring up a list of keys.
+
+
+
+       -d|-D [pid.tty.host]
+            does not start screen, but detaches the elsewhere  running  screen
+            session.  It  has  the same effect as typing "C-a d" from screen's
+            controlling terminal. -D is the equivalent  to  the  power  detach
+            key.   If  no  session can be detached, this option is ignored. In
+            combination with the -r/-R option more  powerful  effects  can  be
+            achieved:
+
+       -d -r   Reattach a session and if necessary detach it first.
+

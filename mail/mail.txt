@@ -1,0 +1,7 @@
+use uuencode to send email with attachment.
+
+uuencode hoho.png hoho.png | mail -s "hoho" xxxxxxxxx@gmail.com
+
+echo "hooh" | mail -s "ho" xxxxx@gmail.com
+
+mail -s "hoho" xxxxx@gmail.com < hoho.txt

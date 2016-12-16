@@ -1,0 +1,4 @@
+/var/lib/sysv-rc-conf/services
+
+update-rc.d [-n] [-f] B name  remove
+

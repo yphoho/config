@@ -1,0 +1,44 @@
+server:
+http://blog.istef.info/2008/10/17/ubuntu-pptp-server/
+http://www.ppkj.net/2011/09/17/centos-%E6%90%AD%E5%BB%BAvpn-%E5%B9%B6%E4%B8%94%E8%A7%A3%E5%86%B3%E8%BF%9E%E6%8E%A5%E5%90%8E%E8%AE%BF%E9%97%AE%E5%A4%96%E7%BD%91%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/
+client:
+http://askubuntu.com/questions/56559/how-do-i-set-up-a-pptp-vpn-on-my-own-ubuntu-server
+
+
+sudo apt-get install pptpd
+
+sudo vim /etc/pptpd.conf
+================================
+localip 192.168.100.1
+remoteip 192.168.100.100-103
+================================
+
+sudo vim /etc/ppp/pptpd-options
+================================
+ms-dns 178.79.131.110
+ms-dns 8.8.8.8
+================================
+
+sudo vim /etc/ppp/chap-secrets
+================================
+username pptpd passwd *
+================================
+
+sudo service pptpd restart
+
+# You can connect to the vpn now, but you con't access internet by the vpn.
+# Continue:
+
+sudo vim /etc/sysctl.conf
+================================
+net.ipv4.ip_forward=1
+================================
+
+sudo sysctl -p
+
+OUTIF=`/sbin/ip route show to exact 0/0 | sed -r 's/.*dev\s+(\S+).*/\1/'`
+sudo iptables -t nat -A POSTROUTING -o $OUTIF -j MASQUERADE
+# sudo iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE
+
+# With the cmd above, you can access the internet. Save it to /etc/rc.local for reboot
+

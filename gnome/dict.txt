@@ -1,0 +1,38 @@
+gnome-dictionary
+sudo apt-get install dict dictd dict-xdict dict-stardic dict-gcide
+后面三个是字典，其中 dict-gcide 英英字典翻译结果很全，dict-stardic，dict-xdict是英汉字典。
+
+/etc/dictd/dictd.order
+在这个文件中按照你想要的顺序写下字典的名字。比如你想先读取dict-stardic的翻译，就把stardic写在第一位。具体的man dictdconfig。
+
+/etc/dictd/dict.conf
+/etc/dictd/dictd.conf
+以上两个文件是dict和dictd的configuretion，与gnome-dictionary无关，gnome-dictionary的配置文件在：
+~/.gnome2/gnome-dictionary/
+更改这个文件夹的内容最好是通过gnome-dictionary的gui。
+以下内容来自：http://sunng.info/blog/2010/02/%E4%BD%BF%E7%94%A8gnome-dictionary%E5%92%8Cdictd/
+
+在gnome-dictionary中添加字典源 Edit->Preference->Source->Add
+Name: 自定义的字典名
+Transport: Dictionary Source
+Hostname: 127.0.0.1
+Port: 2628
+
+Close之后可以到主界面打开侧边栏，在Dictionary Source中双击选定此字典，在Aailable Dictionaries里双击选中目标字典，于是就可以在gnome-dictionary里使用本地的字典服务了。
+接下来安装自己的字典。stardict的网站上有很多中文字典，上面也都标示了授权协议。要在dictd里使用这些字典，需要进行一个简单的格式转换。安装一个工具
+sudo apt-get install dictconv
+它的使用方法：
+dictconv -o OUTPUT_FILE INPUT_FILE
+在input_file指定stardict的.ifo文件，在output_file指定要生成的dictd的.index文件。这个转换非常耗时，需要有足够的耐心。这个操作将会生成.index和.dict文件。对.dict文件进行压缩：
+dictzip OUT.dict
+转换完成后，编辑/var/lib/dictd/db.list文件，在其中添加一个database定义
+database YOUR_DB_NAME{
+data PATH_TO_DICT_DZ
+index PATH_TO_INDEX
+}
+其中PATH_TO_DICT_DZ是上一步的.dz文件，PATH_TO_INDEX是到上一步生成的.index文件的路径。编辑完成后，重启dictd服务
+sudo service dictd restart
+使用dict -D可以查看启用的字典。
+建议备份/var/lib/dictd/db.list文件，因为每次从apt-get安装字典后，这个文件都会被覆盖。
+dictd服务也可以在fantasdic里访问。
+

@@ -1,0 +1,59 @@
+sudo pppoeconf：
+一路yes下去就得。
+这条命令会改/etc/ppp/下的chap-secrets，pap-secrets，还会在/etc/ppp/peers下边建一个dsl-provider的文件，这个文件下边会用到。/etc/network/interface也会被加几行，另外，/etc/ppp下会生成一个resolv.conf文件，用于接收dns server。
+
+ 
+
+sudo pon dsl-provider：
+拨号能不能成功的关键就在dsl-provider的设置了。网上说的什么要调整options，options.pptp文件之类的都是扯淡。那两个文件基本上就不会产生什么影响(好像是根本就没有用里边的配置，不知道是不是我没有看全)。
+
+pppoeconf产生dsl-provider的时候有一个配置是：
+nic-eth0-help-help
+我当时运行的时候，pppd马上就报错了，说没有这个选项，我当时也没有看就直接注释掉了。结果在syslog里的错误信息：
+pppd[2554]: pppd 2.4.5 started by yp, uid 0
+NetworkManager:    SCPlugin-Ifupdown: devices added (path: /sys/devices/virtual/net/ppp0, iface: ppp0)
+NetworkManager:    SCPlugin-Ifupdown: device added (path: /sys/devices/virtual/net/ppp0, iface: ppp0): no ifupdown configuration found.
+pppd[2554]: Using interface ppp0
+pppd[2554]: Connect: ppp0 <--> /dev/pts/1
+pppd[2554]: LCP: timeout sending Config-Requests
+pppd[2554]: Connection terminated.
+NetworkManager:    SCPlugin-Ifupdown: devices removed (path: /sys/devices/virtual/net/ppp0, iface: ppp0)
+pppd[2554]: Modem hangup
+
+ 
+
+错误信息好像是：
+LCP: timeout sending Config-Requests
+事实上出错的是：
+Connect: ppp0 <--> /dev/pts/1
+就是我刚才注释掉那句，只不过不知道为什么pppoeconf不直接产生个能用的选项，而是生成了一个错误的nic-eth0-help-help。
+
+正解如下：
+nic-eth0
+搞定。
+
+ 
+
+pppd[6638]: Plugin rp-pppoe.so loaded.
+pppd[6638]: RP-PPPoE plugin version 3.8p compiled against pppd 2.4.5
+pppd[6640]: pppd 2.4.5 started by root, uid 0
+pppd[6640]: PPP session is 8441
+pppd[6640]: Connected to 00:18:82:ab:6f:8d via interface eth0
+pppd[6640]: Using interface ppp0
+pppd[6640]: Connect: ppp0 <--> eth0
+pppd[6640]: Remote message: Authentication success,Welcome!
+pppd[6640]: PAP authentication succeeded
+pppd[6640]: peer from calling number 00:18:82:AB:6F:8D authorized
+pppd[6640]: Cannot determine ethernet address for proxy ARP
+pppd[6640]: local  IP address 114.249.211.101
+pppd[6640]: remote IP address 114.249.208.1
+pppd[6640]: primary   DNS address 202.106.195.68
+pppd[6640]: secondary DNS address 202.106.46.151
+
+
+这句：
+pppd[6640]: Connect: ppp0 <--> eth0
+搞定。
+
+
+以后再看看到底是怎么回事。

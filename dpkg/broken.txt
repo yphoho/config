@@ -1,0 +1,51 @@
+当包状态出现broken，以致根本就没法再安装或者删除包的时候：
+/var/lib/dpkg/status
+这个文件是最后的救命稻草了，记得修改这个文件之前先作备份。
+
+dpkg之所以能够对每个包的状态了如指掌，完全是因为dpkg数据库--->>/var/lib/dpkg/status
+这个文本文件中记录了软件仓库中曾经安装过的软件包的安装状态。
+所以，只需要改动这个文件就能够改变软件包的状态。
+
+软件包状态：
+1、not-installed
+The package is not installed on your system.
+2、config-files
+Only the configuration files of the package exist on the system.
+3、half-installed
+The installation of the package has been started, but not com-
+pleted for some reason.
+4、unpacked
+The package is unpacked, but not configured.
+5、half-configured
+The package is unpacked and configuration has been started, but
+not yet completed for some reason.
+6、 triggers-awaited
+The package awaits trigger processing by another package.
+7、 triggers-pending
+The package has been triggered.
+8、 installed
+The package is unpacked and configured OK.
+
+以上请详细参考man dpkg
+
+软件包还有一个选择状态：
+1、install
+The package is selected for installation.
+2、deinstall
+The package is selected for deinstallation (i.e. we want to
+remove all files, except configuration files).
+3、purge The package is selected to be purged (i.e. we want to remove
+everything, even configuration files).
+
+
+最后组合起来的错误状态大概就有6种，安装、删除出错都会将软件包的状态标记成其中之一！
+它们的状态都要被修改成：install ok installed ; deinstall ok not-installed或purge ok not-installed。
+
+最后需要注意的是：
+软件包除了处在not-install 的状态，其余状态都是有完整的描述的。
+要将错误状态修改成installed状态，需要查看一下软件包的描述是否有。（这个一般是有的）
+要将错误状态修改成not-install状态，需要删除软件包的描述，删除Section行下面的全部。（不要把别人的删掉）
+
+
+所以把所有状态不是installed的包信息全部删除。修正了错误之后再重新安装这些包就可以了。
+

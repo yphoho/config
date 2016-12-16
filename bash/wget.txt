@@ -1,0 +1,124 @@
+wget -nd -r -l1 http://elinuxdd.com/~elinuxdd/elinuxdd.docs/listings/ -o eldd.log
+
+ 
+
+       -nd
+       --no-directories
+           Do not create a hierarchy of directories when retrieving
+           recursively.  With this option turned on, all files will get saved
+           to the current directory, without clobbering (if a name shows up
+           more than once, the filenames will get extensions .n).
+
+ 
+
+       -r
+       --recursive
+           Turn on recursive retrieving.
+       -l depth
+       --level=depth
+           Specify recursion maximum depth level depth.  The default maximum
+           depth is 5.
+
+ 
+
+       -o logfile
+       --output-file=logfile
+           Log all messages to logfile.  The messages are normally reported to
+           standard error.
+       -a logfile
+       --append-output=logfile
+           Append to logfile.  This is the same as -o, only it appends to
+           logfile instead of overwriting the old log file.  If logfile does
+           not exist, a new file is created.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+wget -nd -r -l3 -A "pdf" http://www.autonlab.org/tutorials/
+
+ 
+
+       -A acclist --accept acclist
+       -R rejlist --reject rejlist
+           Specify comma-separated lists of file name suffixes or patterns to
+           accept or reject. Note that if any of the wildcard characters, *,
+           ?, [ or ], appear in an element of acclist or rejlist, it will be
+           treated as a pattern, rather than a suffix.
+
+ 
+
+ 
+
+ 
+
+       -p
+       --page-requisites
+           This option causes Wget to download all the files that are
+           necessary to properly display a given HTML page.  This includes
+           such things as inlined images, sounds, and referenced stylesheets.
+
+           Ordinarily, when downloading a single HTML page, any requisite
+           documents that may be needed to display it properly are not
+           downloaded.  Using -r together with -l can help, but since Wget
+           does not ordinarily distinguish between external and inlined
+           documents, one is generally left with "leaf documents" that are
+           missing their requisites.
+
+           For instance, say document 1.html contains an "<IMG>" tag
+           referencing 1.gif and an "<A>" tag pointing to external document
+           2.html.  Say that 2.html is similar but that its image is 2.gif and
+           it links to 3.html.  Say this continues up to some arbitrarily high
+           number.
+
+           If one executes the command:
+
+                   wget -r -l 2 http://<site>/1.html
+
+           then 1.html, 1.gif, 2.html, 2.gif, and 3.html will be downloaded.
+           As you can see, 3.html is without its requisite 3.gif because Wget
+           is simply counting the number of hops (up to 2) away from 1.html in
+           order to determine where to stop the recursion.  However, with this
+           command:
+
+                   wget -r -l 2 -p http://<site>/1.html
+
+           all the above files and 3.html's requisite 3.gif will be
+           downloaded.  Similarly,
+
+                   wget -r -l 1 -p http://<site>/1.html
+
+           will cause 1.html, 1.gif, 2.html, and 2.gif to be downloaded.  One
+           might think that:
+
+                   wget -r -l 0 -p http://<site>/1.html
+
+           would download just 1.html and 1.gif, but unfortunately this is not
+           the case, because -l 0 is equivalent to -l inf---that is, infinite
+           recursion.  To download a single HTML page (or a handful of them,
+           all specified on the command-line or in a -i URL input file) and
+
+           its (or their) requisites, simply leave off -r and -l:
+
+                   wget -p http://<site>/1.html
+
+           Note that Wget will behave as if -r had been specified, but only
+           that single page and its requisites will be downloaded.  Links from
+           that page to external documents will not be followed.  Actually, to
+           download a single page and all its requisites (even if they exist
+           on separate websites), and make sure the lot displays properly
+           locally, this author likes to use a few options in addition to -p:
+
+                   wget -E -H -k -K -p http://<site>/<document>
+
+           To finish off this topic, it's worth knowing that Wget's idea of an
+           external document link is any URL specified in an "<A>" tag, an
+           "<AREA>" tag, or a "<LINK>" tag other than "<LINK
+           REL="stylesheet">".
+

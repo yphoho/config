@@ -1,0 +1,3 @@
+see the file as man from command line:
+groff  -Tascii  -man  dnscope.1
+

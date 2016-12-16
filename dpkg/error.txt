@@ -1,0 +1,43 @@
+debconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: 资源暂时不可用
+
+处理方法：
+找到config.dat的占用进程并kill之
+使用命令sudo lsof 或者 sudo fuser
+root@crazoy-laptop:/home/crazoy# sudo lsof /var/cache/debconf/config.dat
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+frontend 8879 root    4rW  REG    8,6    39392 2273 /var/cache/debconf/config.dat
+root@crazoy-laptop:/home/crazoy# sudo fuser /var/cache/debconf/config.dat
+/var/cache/debconf/config.dat:  8879
+
+root@crazoy-laptop:/home/crazoy# ps -aux | grep 8879
+Warning: bad ps syntax, perhaps a bogus '-'? See http://procps.sf.net/faq.html
+root      8879  0.0  0.3  11096  7748 ?        S    09:37   0:00 /usr/bin/perl -w /usr/share/debconf/frontend /var/lib/dpkg/info/mysql-server-5.1.postinst configure 5.1.41-3ubuntu12.3
+root      9758  0.0  0.0   3544   824 pts/2    S+   14:01   0:00 grep 8879
+root@crazoy-laptop:/home/crazoy# kill 8879
+
+
+
+
+
+
+dpkg: 另外一个进程已经为状态数据库加了锁
+处理方法：
+ps -ax找到程序安装相关的进程，sudo kill ID，这里ID是进程的编号。
+
+
+
+
+
+
+
+dpkg：处理 linux-image-2.6.24-26-generic (--configure)时出错：
+ 子进程 post-installation script 返回了错误号 10
+dpkg：依赖关系问题使得 linux-ubuntu-modules-2.6.24-26-generic 的配置工作不能继续：
+ linux-ubuntu-modules-2.6.24-26-generic 依赖于 linux-image-2.6.24-26-generic；然而：
+  软件包 linux-image-2.6.24-26-generic 还没有被配置。
+
+处理方法：
+重新安装软件包
+
+
+

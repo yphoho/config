@@ -1,0 +1,9 @@
+http://packages.python.org/distribute/setuptools.html
+# http://docs.python.org/distutils/introduction.html
+
+create tar.gz:
+python setup.py sdist
+
+install:
+python setup.py install
+

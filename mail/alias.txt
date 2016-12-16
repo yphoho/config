@@ -1,0 +1,20 @@
+http://www.walkernews.net/2008/01/16/how-to-setup-email-alias-in-red-hat-linux/
+
+
+An email alias is usually setup for redirection or to group a list of email recipients into one “email address” that understand by the email system.
+For example, you might want all emails addressed to “apache” being redirected to your personal Gmail account. You could also setup an alias called blog-admin so that all emails sending to blog-admin will be distributed to all blog administrators defined by the alias name (blog-admin).
+How to setup an email alias in Red Hat Enterprise Linux with Sendmail system installed?
+Login with root user ID
+Edit the /etc/aliases file (with vi editor)
+Append / change an email alias in this format
+alias_name:   email_id1 [, email_id2,] ...
+E.g. append this new email alias to the /etc/aliases
+blogadmin:   walkernews@walkernews.net, assist@walkernews.net
+Save and exit the alias file
+Execute the newaliases command followed by echo $? (suppose there is no error found, you will get a 0 returned by the echo command).
+Alternatively, you can execute the equivalent sendmail -bi command (since this is a Sendmail system)
+By now, you should test and confirm the works done so far. E.g. send an email to the email alias:
+mail -s "testing with aliases name blogadmin" blogadmin </dev/null
+Mission completed if you the email in both inboxes (in this example, these are walkernews@walkernews.net and assist@walkernews.net).
+
+

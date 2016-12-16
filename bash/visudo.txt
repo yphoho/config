@@ -1,0 +1,93 @@
+       The sudoers file is composed of two types of entries: aliases
+       (basically variables) and user specifications (which specify who may
+       run what).
+
+       When multiple entries match for a user, they are applied in order.
+       Where there are multiple matches, the last match is used (which is not
+       necessarily the most specific match).
+
+
+
+   User Specification
+        User_Spec ::= User_List Host_List '=' Cmnd_Spec_List \
+                      (':' Host_List '=' Cmnd_Spec_List)*
+
+        Cmnd_Spec_List ::= Cmnd_Spec |
+                           Cmnd_Spec ',' Cmnd_Spec_List
+
+        Cmnd_Spec ::= Runas_Spec? Tag_Spec* Cmnd
+
+        Runas_Spec ::= '(' Runas_List? (':' Runas_List)? ')'
+
+        Tag_Spec ::= ('NOPASSWD:' | 'PASSWD:' | 'NOEXEC:' | 'EXEC:' |
+                      'SETENV:' | 'NOSETENV:' | 'LOG_INPUT:' | 'NOLOG_INPUT:' |
+                      'LOG_OUTPUT:' | 'NOLOG_OUTPUT:')
+
+
+
+
+   Runas_Spec
+       A Runas_Spec determines the user and/or the group that a command may be
+       run as.  A fully-specified Runas_Spec consists of two Runas_Lists (as
+       defined above) separated by a colon (':') and enclosed in a set of
+       parentheses.  The first Runas_List indicates which users the command
+       may be run as via sudo's -u option.  The second defines a list of
+       groups that can be specified via sudo's -g option.  If both Runas_Lists
+       are specified, the command may be run with any combination of users and
+       groups listed in their respective Runas_Lists.  If only the first is
+       specified, the command may be run as any user in the list but no -g
+       option may be specified.  If the first Runas_List is empty but the
+       second is specified, the command may be run as the invoking user with
+       the group set to any listed in the Runas_List.  If no Runas_Spec is
+       specified the command may be run as root and no group may be specified.
+
+       A Runas_Spec sets the default for the commands that follow it.  What
+       this means is that for the entry:
+
+        dgb    boulder = (operator) /bin/ls, /bin/kill, /usr/bin/lprm
+
+       The user dgb may run /bin/ls, /bin/kill, and /usr/bin/lprm -- but only
+       as operator.  E.g.,
+
+        $ sudo -u operator /bin/ls.
+
+       It is also possible to override a Runas_Spec later on in an entry.  If
+       we modify the entry like so:
+
+        dgb    boulder = (operator) /bin/ls, (root) /bin/kill, /usr/bin/lprm
+
+       Then user dgb is now allowed to run /bin/ls as operator, but  /bin/kill
+       and /usr/bin/lprm as root.
+
+
+
+
+   Tag_Spec
+       A command may have zero or more tags associated with it.  There are
+       eight possible tag values, NOPASSWD, PASSWD, NOEXEC, EXEC, SETENV,
+       NOSETENV, LOG_INPUT, NOLOG_INPUT, LOG_OUTPUT and NOLOG_OUTPUT.  Once a
+       tag is set on a Cmnd, subsequent Cmnds in the Cmnd_Spec_List, inherit
+       the tag unless it is overridden by the opposite tag (i.e.: PASSWD
+       overrides NOPASSWD and NOEXEC overrides EXEC).
+
+
+
+
+sudoers文件有两种语法：别名，用户规则
+
+用户规则的一个完整表达：
+user host = (run_user : run_group) Tag_Spec: cmds
+
+run_user和run_group是说只能用这个用户和组执行：
+sudo -u run_user -g run_group xxxx
+
+Tag_Spec可以为：
+NOPASSWD, PASSWD, NOEXEC, EXEC, xxxxx
+
+
+如果没有覆盖，后边的命令会继承run_user和run_group。
+
+
+
+
+

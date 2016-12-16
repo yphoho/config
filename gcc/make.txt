@@ -1,0 +1,5 @@
+http://www.gnu.org/software/make/manual/make.html#Overriding
+
+An argument that contains ‘=’ specifies the value of a variable: ‘v=x’ sets the value of the variable v to x. If you specify a value in this way, all ordinary assignments of the same variable in the makefile are ignored; we say they have been overridden by the command line argument.
+
+

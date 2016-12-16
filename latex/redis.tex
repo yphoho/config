@@ -1,0 +1,227 @@
+\documentclass{beamer}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+%\usepackage[latin1]{inputenc}
+
+\newcommand\song{\fontspec[ExternalLocation=/usr/local/share/fonts/msfonts/]{simsun.ttc}}
+\newfontfamily\monaco{Monaco}
+\setromanfont{Monaco}
+
+\title[Introduction to Redis]{Introduction to Redis}
+\author{yangpeng@knet.cn}
+\institute{\song 技术部}
+\date{Sep 22, 2011}
+
+
+%% \usetheme{Warsaw}
+
+
+\begin{document}
+
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Menu}
+  \begin{itemize}
+
+  \item NoSQL vs. SQL and Why NoSQL \\
+  \item Redis Overview \\
+  \item \emph{key/value Data Structure} \\
+  \item \emph{Redis as MQ} \\
+  \item \emph{Replication} \\
+  \item \emph{Persistence} \\
+  \item Disadvantages \\
+  \item \emph{Example} \\
+  \item Upcomming: cluster, script \\
+
+  \end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+  \frametitle{NoSQL vs. SQL}
+  %% \pause
+  NoSQL -- \href{http://en.wikipedia.org/wiki/NoSQL}{Not only SQL} \\
+  ~\\
+  %% \pause
+  UnQL (Unstructured Data Query Language) by CouchDB and SQLite. \\
+  ~\\
+  %% \pause
+  \href{http://lgone.com/html/y2011/882.html}{NoSQL Ecosystem} \\
+\end{frame}
+
+
+
+
+
+\begin{frame}
+  \frametitle{Why NoSQL}
+  \begin{itemize}
+  \item schema free \\
+  \item massive scalability \\
+  \item low latency \\
+  \item the ability to grow the capacity \\
+  \item easier programming model \\
+  \item ...... \\
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+  \frametitle{Redis Overview}
+  \href{http://redis.io}{Redis website} says: \\
+  Redis is an open source, advanced \emph{key-value store}. It is often referred to as a \emph{data structure server} since keys can contain strings, hashes, lists, sets and sorted sets. \\
+\end{frame}
+
+
+
+
+
+\begin{frame}
+  \frametitle{key/value Data Structure}
+  \begin{itemize}
+    \pause
+  \item Strings \\
+    \pause
+  \item Lists \\
+    \pause
+  \item Sets \\
+    \pause
+  \item Sorted Sets \\
+    \pause
+  \item Hashes \\
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Redis as MQ}
+  \begin{itemize}
+    \pause
+  \item pub/sub \\
+    \pause
+  \item BLPOP/BRPOP \\
+  \end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{Replication}
+  http://redis.io/topics/replication \\
+  \pause
+  \begin{block}{facts:}
+    master to slave \\
+    slave to slave \\
+    master non-blocking \\
+    \emph{substitute for persistence} \\
+  \end{block}
+  \pause
+  \begin{block}{detail:}
+    1. master background saving; \\
+    2. transfers the database file; \\
+    3. send all accumulated commands. \\
+    ~\\
+    \pause
+    show by telnet \\
+  \end{block}
+  \pause
+  \begin{block}{configuration:}
+    slaveof 192.168.1.1 6379 \\
+  \end{block}
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Persistence}
+  http://redis.io/topics/persistence \\
+  \pause
+  \begin{block}{Snapshotting}
+    \begin{itemize}
+    \item conf: save 60 1000 \\
+    \item command: SAVE, BGSAVE \\
+    \end{itemize}
+  \end{block}
+
+  \pause
+  \begin{block}{Append-only file:  fully-durable}
+    \begin{itemize}
+    \item conf: \\
+      appendonly yes \\
+      appendfsync always \\
+      appendfsync everysec \\
+      appendfsync no \\
+    \item Log rewriting \\
+      command: BGREWRITEAOF \\
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}{Disadvantages}
+  \begin{itemize}
+  \item RAM \\
+    1. The amount of RAM that Redis needs is proportional to the size of the dataset. \\
+    2. VM has been deprecated in Redis 2.4. \\
+  \item Memory Bloat \\
+    Redis' internal design typically trades off memory for speed. For some workloads, there can be an order of magnitude difference between the raw number of bytes handed off to Redis to store, and the amount of memory that Redis uses. \\
+  \item Persistence
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Example}
+  \begin{itemize}
+    \pause
+  \item \href{http://santosh-log.heroku.com/2011/08/07/building-a-rss-feed-processor-with-redis/}{RSS feed processor} \\
+    \pause
+  \item \href{http://redis.io/topics/twitter-clone}{Retwis} \\
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Upcomming ...}
+  \begin{itemize}
+  \item cluster \\
+    Alternative Method: \href{http://antirez.com/post/redis-presharding.html}{Presharding} \\
+  \item script \\
+    \href{http://antirez.com/post/redis-and-scripting.html}{Lua} \\
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+\end{document}
+

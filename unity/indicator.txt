@@ -1,0 +1,110 @@
+aptitude search indicator
+
+
+
+http://www.techdrivein.com/2011/05/10-useful-application-indicators-for.html
+
+Ubuntu 11.04 Natty Narwhal is probably the most criticized may be even a tad too under rated Ubuntu release ever. But as we had noted in our previous Ubuntu 11.04 review, it doesn't feel that bad for everyone anyway. Application Indicators are good way to extend the functionality of brand new Ubuntu 11.04 and here are some of the most useful among them.
+
+Weather Indicator Applet
+    A very simple weather indicator applet that just works. To install Weather Indicator application indicator in Ubuntu 11.04, you either Click Here OR simply copy-paste the following command into Terminal.
+sudo apt-get install indicator-weather
+Done. Launch Weather Indicator app from 'Applications' dash.
+
+Dropbox Application Indicator
+Dropbox Application Indicator Ubuntu 11.04
+    Installing Dropbox client is among the first things I did after installing Ubuntu 11.04 Natty Narwhal and Dropbox remains my favorite online file backup tool for Ubuntu.
+    Read detailed Dropbox installation instructions for Ubuntu.
+
+Sysmonitor Indicator
+System Monitor Application Indicator Ubuntu 11.04
+    Sysmonitor Indicator is my choice of system monitor applucation indicator for Ubuntu 11.04 Natty Narwhal. It's very light and works really well too.
+    To install Sysmonitor Indicator in Ubuntu 11.04, you need to copy paste the following commands into Terminal.
+sudo add-apt-repository ppa:alexeftimie/ppa
+sudo apt-get update
+sudo apt-get install indicator-sysmonitor
+    Done. Now, simply launch Sysmonitor Indicator from Applications dash in Unity.
+
+
+System Load Indicator
+System Load Application Indicator Ubuntu 11.04
+    System Load Indicator is a simple network, memory and CPU usage indicator which is actually a port of the original System Monitor GNOME Panel applet. 
+    Do the following in Terminal to install System Load Indicator in Ubuntu 11.04.
+sudo add-apt-repository ppa:indicator-multiload/stable-daily
+sudo apt-get update
+sudo apt-get install indicator-multiload
+    Done. And simply launch System Load Indicator from Unity dash. Eventhough System Load Indicator app is equally good, I prefer Sysmonitor Indicator for its simplicity.
+
+Touchpad Indicator
+    Very useful if you are using a laptop/netbook which doesn't have a physical button to enable/disable touchpad, which is my case unfortunately.
+    Do the following in Terminal to install Touchpad Indicator in Ubuntu 11.04.
+sudo add-apt-repository ppa:atareao/atareao
+sudo apt-get update
+sudo apt-get install touchpad-indicator
+    Done. Now, once you disable your touchpad, you can access top panel by simply hitting F10 key.(Also Read: Essential Unity Keyboard Shortcuts)
+
+Battery Status Indicator
+Battery Status Indicator Ubuntu 11.04
+    Another useful application for laptop users. Battery Status application indicator is capable of displaying detailed information about the battery. 
+    Do the following in Terminal to install Battery Status Indicator in Ubuntu 11.04.
+sudo apt-add-repository ppa:iaz/battery-status
+sudo apt-get update
+sudo apt-get install battery-status
+    Now, to run 'Battery Status' as an Application Indicator  in Ubuntu 11.04, copy paste the following command into terminal.
+/usr/lib/battery-status/battery-status --indicator
+    Done. Now, to start Battery Status while at start up, open Startup Applications from Unity applications dash and Add the above command to it.
+
+Workspaces Indicator
+Workspaces Indicator Ubuntu 11.04
+    A very simple application indicator to show and switch between workspaces in Ubuntu 11.04 Natty Narwhal.
+    To install Workspaces Indicator in Ubuntu 11.04, do the following.
+sudo add-apt-repository ppa:geod/ppa-geod
+# change from "oneiric" to "natty" in the sources.list for the lack of oneiric
+sudo apt-get update
+sudo apt-get install indicator-workspaces
+    Done. Launch Workspaces Indicator from Unity applications dash.
+
+Keylock Application Indicator
+    Keylock Applicatior Indicator shows which key locks you have enabled(caps, num and scroll locks supported among others).
+    Install Keylock Indicator in Ubuntu 11.04 by doing the following in Terminal.
+sudo add-apt-repository ppa:tsbarnes/indicator-keylock
+sudo apt-get update
+sudo apt-get install indicator-keylock
+    Done. Simply launch Keylock Indicator from Unity applications dash.
+
+Caffeine Application Indicator
+Caffeine Application Indicator Ubuntu 11.04
+    Caffeine is a very useful application application that can temporarily prevent the activation of both the screensaver and the "sleep" powersaving mode. There is even an option to activate Caffeine when specific applications are launched. 
+    Do the following in Terminal to install Caffeine in Ubuntu 11.04.
+sudo add-apt-repository ppa:caffeine-developers/ppa
+sudo apt-get update
+sudo apt-get install caffeine
+    Done. Simply launch Caffeine from Unity dash.
+
+Pastie Clipboard Manager Indicator
+    Pastie is a simple clipboard manager. Do the following in Terminal to install Pasite indicator in Ubuntu 11.04 Natty Narwhal.
+sudo add-apt-repository ppa:hel-sheep/pastie
+sudo apt-get update
+sudo apt-get install pastie
+    Done. Launch Pastie clipboard manager from Unity applications dash. 
+
+To use all of the application indicators featured above together is a bit too much IMO. I only use Weather, Dropbox and Sysmonitor application indicators and I would never probably use indicators like the one for Workspaces, for example. You could find more such application indicators at askubuntu. Pick your favorites. Meanwhile, you might also want to check out this very useful listing of top 6 quicklists for Ubuntu 11.04 Unity launcher.
+
+
+
+
+
+
+
+
+
+
+
+
+SysPeek is a system monitor indicator that displays CPU usage, memory usage, swap usage, disk usage and network traffic.
+Install SysPeek on ubuntu 11.04(Natty)
+Open the terminal and run the following commands
+    sudo add-apt-repository ppa:vicox/syspeek
+    sudo apt-get update
+    sudo apt-get install syspeek
+

@@ -1,0 +1,25 @@
+#!/usr/bin/expect
+
+
+set user "guest"
+set server "s3.alidage.org"
+set passwd ""
+set port "22"
+
+
+set timeout 180
+
+spawn ssh -p $port -CND 7070 $user@$server
+expect {
+    "continue connecting" {
+        send "yes\r"
+    }
+    "password:" {
+        send "$passwd\r"
+    }
+}
+interact {
+    timeout 60 { send " " }
+}
+
+

@@ -1,0 +1,54 @@
+# http://blog.istef.info/2008/10/17/ubuntu-pptp-server/
+
+
+sudo apt-get install pptpd
+
+
+sudo cp /etc/pptpd.conf /etc/pptpd.conf-old
+sudo vim /etc/pptpd.conf
+# append lines:
+###################
+localip 192.168.100.1
+remoteip 192.168.100.100-110
+###################
+
+
+sudo cp /etc/ppp/pptpd-options /etc/ppp/pptpd-options-old
+sudo vim /etc/ppp/pptpd-options
+# change the ms-dns:
+###################
+ms-dns 8.8.8.8
+ms-dns 8.8.4.4
+###################
+
+
+sudo cp /etc/ppp/chap-secrets /etc/ppp/chap-secrets-old
+sudo vim /etc/ppp/chap-secrets
+# add username and pssswd:
+##################
+your_name pptpd your_passwd *
+##################
+
+
+sudo service pptpd restart
+
+
+sudo cp /etc/sysctl.conf /etc/sysctl.conf-old
+sudo vim /etc/sysctl.conf
+# uncoumnet:
+################
+net.ipv4.ip_forward=1
+################
+sudo sysctl -p
+
+
+# sudo apt-get intall iptables
+sudo iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -s 192.168.100.0/24 -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1200
+sudo iptables-save > /etc/iptables-rules
+sudo cp /etc/network/interfaces /etc/network/interfaces-old
+sudo vim /etc/network/interfaces
+# add after eth0 setup:
+######################
+pre-up iptables-restore < /etc/iptables-rules
+######################

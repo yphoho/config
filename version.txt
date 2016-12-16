@@ -1,0 +1,5 @@
+为了查看 Ubuntu 的版本号和kernel，可以采用以下两种方法之一：
+cat /etc/issue
+lsb_release -a
+uname -a
+

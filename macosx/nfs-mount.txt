@@ -1,0 +1,1 @@
+sudo mount -t nfs -o resvport nfsserver:/Exports mountpoint

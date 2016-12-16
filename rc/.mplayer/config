@@ -1,0 +1,16 @@
+# Write your default config options here!
+
+# stretch the screen when full-window
+zoom="yes"
+
+subcp=gbk #设置字幕编码方式，主要有utf-8,cp936,gbk,gb2312…
+font=/usr/share/fonts/truetype/wqy/wqy-microhei.ttc #字体文件位置
+#overlapsub=1 # 同一时间显示多条语言字幕，某些情况下可以中英文同时显示
+ass=1 #转换字幕为ass方式，这个时候，如果不设置字幕颜色，默认是黄色
+ass-color=FFFFFF00
+
+subfont-autoscale=1
+subfont-text-scale=7 #字幕的字体大小，一般设置在5~8的范围，太大太小都不爽
+subfont-osd-scale=5 #左上角的时间，中间的进度条显示大小
+
+sub-fuzziness=1

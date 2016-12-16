@@ -1,0 +1,14 @@
+http://www.cnblogs.com/fxjwind/archive/2011/07/05/2098636.html
+http://coolshell.cn/articles/671.html
+
+gcc -c -fPIC xxxx.c
+gcc -shared xxxx.o -o xxxx.so
+
+-fPIC 作用于编译阶段，告诉编译器产生与位置无关代码(Position-Independent Code)，则产生的代码中，没有绝对地址，全部使用相对地址，故而代码可以被加载器加载到内存的任意位置，都可以正确的执行。这正是共享库所要求的，共享库被加载时，在内存的位置不是固定的。
+-shared 作用于链接阶段，实际传递给链接器ld，让其添加作为共享库所需要的额外描述信息，去除共享库所不需的信息。
+
+
+import ctypes
+lib = ctypes.cdll.LoadLibrary('./xxxx.so')
+print lib.func(xx, xx, ...)
+

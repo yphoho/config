@@ -1,0 +1,31 @@
+#!/usr/bin/expect
+
+#set server "shell.cjb.net"
+
+set user "antigfw"
+# get server from http://just-ping.com/
+set server "216.194.70.6"
+set passwd "654321abc"
+set port "22"
+
+
+set timeout 60
+
+spawn ssh -p $port -CND 7070 $user@$server
+
+while {1} {
+    expect {
+        eof {break}
+        "continue connecting (yes/no)?" {send "yes\r"}
+        "password:" {send "$passwd\r"; break}
+        "*\]" {send "exit\r"}
+    }
+}
+# wait
+# close $spawn_id
+
+interact {
+    timeout 60 { send " " }
+}
+
+

@@ -1,0 +1,4 @@
+ps -eL | grep dns_cache
+top -H -p 23930
+strace -c -p 23930
+

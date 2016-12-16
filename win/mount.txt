@@ -1,0 +1,9 @@
+查看共享的目录：
+smbclient -L 192.168.1.1
+挂载：
+sudo mount -t cifs -o username=Administrator,password=123456 //192.168.1.1/hoho /mnt
+
+cifs：Common Internet File System
+cifs也可以不指定，kernel会自动判断。
+
+

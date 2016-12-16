@@ -1,0 +1,11 @@
+In Ubuntu 11.04 the notification area (or systray) is only enabled for some applications, Java, Mumble, Wine, Skype, and hp-systray, it makes software that makes use of it and that is not in the "white list" can not run, such as Radio Tray or Jupiter.
+Luckily there is a fairly simple solution is to enable the notification area for all applications in Ubuntu 11.04, We paste the command in the terminal.
+    gsettings set com.canonical.Unity.Panel systray-whitelist "['all']"
+If you just want to add an application to whitelist system tray the command would be this.
+    gsettings set com.canonical.Unity.Panel systray-whitelist "['JavaEmbeddedFrame', 'Mumble', 'Wine', 'Skype', 'hp-systray', 'scp-dbus-service', 'YOUR_APPLICATION']"
+YOUR_APPLICATION Where would you want to add.
+Want to go back to normal? you just have to run this command and everything is as it was then.
+    gsettings set com.canonical.Unity.Panel systray-whitelist "['JavaEmbeddedFrame', 'Mumble', 'Wine', 'Skype', 'hp-systray', 'scp-dbus-service']"
+
+
+

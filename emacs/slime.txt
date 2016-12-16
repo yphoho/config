@@ -1,0 +1,36 @@
+http://www.osix.net/modules/article/?id=912
+
+sudo apt-get install slime
+
+
+
+add to .emacs:
+;; Lisp (SLIME) interaction
+;; The SBCL binary and command-line arguments
+(setq inferior-lisp-program "/usr/bin/sbcl --noinform")
+;; (setq inferior-lisp-program "clisp")
+;; (add-to-list 'load-path "~/.slime")
+(require 'slime)
+(slime-setup)
+
+
+but without the clisp installed, the sbcl will be runed.
+
+http://www.sbcl.org/manual/index.html
+
+     ;;; The SBCL binary and command-line arguments
+     (setq inferior-lisp-program "/usr/bin/sbcl --noinform")
+
+
+
+
+
+sbcl fails to load asdf on startup:
+version:SBCL 1.0.50.0.debian
+Quick solution: put
+(require 'asdf)
+into your .sbclrc file in your home directory.
+
+
+
+

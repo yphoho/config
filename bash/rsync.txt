@@ -1,0 +1,63 @@
+/etc/default/rsync里边的变量会覆盖/etc/init.d/rsync中的，尤其是
+RSYNC_ENABLE
+所以能注释就注释掉吧。
+
+/etc/init.d/rsync里的
+RSYNC_ENABLE
+改成true，要不然sudo service rsync start的时候不会以daemon启动。
+
+http://www.linuxsir.org/main/?q=node/256
+http://blog.csdn.net/learnhard/archive/2010/04/29/5542765.aspx
+
+
+#rsyncd.conf文件：
+=====================================
+# Minimal configuration file for rsync daemon
+# See rsync(1) and rsyncd.conf(5) man pages for help
+
+# This line is required by the /etc/init.d/rsyncd script
+#pid file = /var/run/rsyncd.pid
+#port = 873
+#address = 192.168.1.171
+#uid = nobody
+#gid = nobody
+uid = yangpeng
+gid = yangpeng
+
+#use chroot = yes
+read only = yes
+
+
+#limit access to private LANs
+hosts allow=192.168.1.0.0/24 192.188.0.0/24
+hosts deny=*
+
+max connections = 5
+
+# make sure the secrets file to: chmod 600
+secrets file = /etc/rsyncd/rsyncd.secrets
+motd file = /etc/rsyncd/rsyncd.motd
+
+#This will give you a separate log file
+#log file = /var/log/rsync.log
+
+#This will log every file transferred - up to 85,000+ per user, per sync
+#transfer logging = yes
+
+log format = %t %a %m %f %b
+syslog facility = info
+timeout = 300
+
+
+
+[test]
+#path = /home/yangpeng/hoho.txt
+path = /home/yangpeng
+list=yes
+ignore errors
+auth users = yangpeng
+#secrets file = /etc/rsyncd/rsyncd.secrets
+comment = test file
+#exclude =   beinan/  samba/
+
+==============================================

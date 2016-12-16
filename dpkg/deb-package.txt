@@ -1,0 +1,8 @@
+http://man.ddvip.com/linux/debian/Debian_Package/Debian_Package.html
+
+查看解压deb包用ar命令，ar的使用基本同于tar：
+ar -x nano-tiny_1.2.4-5_i386.deb
+
+
+DEB文件是使用ar打包的,这样可以以节约空间,因为tar会存储每个文件更多相关信息(比如权限,所有者,日期...)。
+

@@ -1,0 +1,54 @@
+set from = "username@gmail.com"
+set realname = "yp"
+
+set smtp_url = "smtp://username@smtp.gmail.com:587/"
+set smtp_pass = "password"
+
+# set pop_host = "pops://username@gmail.com:password@pop.gmail.com:995"
+set pop_host = "pops://pop.gmail.com:995"
+set pop_user = "username@gmail.com"
+set pop_pass = "password"
+
+set folder="~/.Mail"
+set mbox="~/.Mail/inbox"
+set mbox_type=maildir
+set spoolfile = "+inbox"
+set postponed="~/.Mail/postponed"
+set record="~/.Mail/sent"
+
+set editor = "vim"
+unset pop_delete
+set pop_last
+set include
+
+set check_new = yes
+set mail_check = 60
+set timeout = 15
+
+
+## address book
+# alias nickname realname <username@gmail.com>
+
+
+
+
+
+## IMAP
+# set from = "yourusername@gmail.com"
+# set realname = "Your Real Name"
+
+# set imap_user = "yourusername@gmail.com"
+# set imap_pass = "yourpassword"
+
+# set folder = "imaps://imap.gmail.com:993"
+# set spoolfile = "+INBOX"
+# set postponed ="+[Gmail]/Drafts"
+# set trash = "imaps://imap.gmail.com/[Gmail]/Trash"
+
+# set header_cache = ~/.mutt/cache/headers
+# set message_cachedir = ~/.mutt/cache/bodies
+# set certificate_file = ~/.mutt/certificates
+
+# set smtp_url = "smtp://yourusername@smtp.gmail.com:587/"
+# set smtp_pass = "yourpassword"
+

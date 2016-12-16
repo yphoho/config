@@ -1,0 +1,11 @@
+set smtp-use-starttls
+set ssl-verify=ignore
+set smtp=smtp://smtp.gmail.com:587
+set smtp-auth=login
+set smtp-auth-user=xxxxxx@gmail.com
+set smtp-auth-password=xxxxxxx
+set from="xxxxxxxxxxxxx@gmail.com"
+
+#set nss-config-dir=~/.mozilla/firefox/xxxxxxx.default/
+
+#以上设置竟然没用，还是不能通过gmail发信。

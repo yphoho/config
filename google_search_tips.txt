@@ -1,0 +1,168 @@
+http://www.google.com/support/websearch/bin/answer.py?answer=136861
+http://www.mapelli.info/ultimate-google-search-tips-guide
+
+First Things First
+In this Google guide I’ll show you some less-known google operators and search tips. Please note that since this advanced operators are sometimes used by spam-bot, black hat seos and other people google does not loves, you may bump in 403-Access denied screens like the one I showed to you in my Google hates Doughnuts (and Advanced Search Strings) article.
+Don’t be scared if this happens, nothing is wrong with you / your pc / your search, is just google that it’s a little nervous ;)
+
+Things to Know
+google is not case sensitive: searching for doughnut is the same as DoughNuT
+search operators are case sensitive: searching for doughnuts OR donuts uses OR as the google operator, while doughnuts or donuts does not.
+google default is to search for pages that include all of your search terms. Also the order of your search term is somehow relevant.
+google excludes common words (also called stop words) like “I” , “the” etc.
+some operators can be combined, while others must be used alone.
+Basic Operators
++
+forces words to be included in search results. Useful with stop words that otherwise will be discarded
+
+-
+prevents a search term to show in results, for example searching for doughnut -cream can help you to avoid creamy doughnuts
+
+OR
+returns documents with one of the given terms, like doughnut OR donut. You can also use | instead of OR: doughnut | donut
+
+” “
+using quotes forces google to search for the exact phrase (including stop words), try “doughnut at midnight” and doughnut at midnight (actually, using quotes is similar, but not equals, to doughnut-at-midnight … it would be interesting to know what is the exact difference in SERP)
+
+~
+allow to search also for synonyms of the given word. searching for doughnut ~tips finds also pages with the word help or guide etc.
+
+*
+means every word. try “doughnuts with *”
+
+..
+Used to search in a range of numbers, “2..20 doughnuts” will find pages containing “I eat 3 doughnuts a day” and “I’ll never eat more than 15 doughnuts in a month”
+
+This operators can be combined to create advanced queries, for example “I eat 1..100 doughnut OR doughnuts OR donut OR donuts each *”
+
+Advanced google operators
+daterange:
+Returns documents modified in the given time interval. Dates should be entered in julian format (so geeky, but a bit unusable).
+Using doughnuts daterange:2454091-2454101 you can find who talked about doughnuts in the last ten days of 2006 :)
+
+filetype:
+returns links to documents with the given file type.
+For example searching for doughnuts filetype:java will find portable and object-oriented doughnuts.
+Currently officially supported file types are pdf, ps, wk1, wk2, wk3, wk4, wk5, wki, wks, wku, lwp, mw, xls, ppt, doc, wks, wps, wdb, wri, rtf, swf, ans, txt, but other are supported as well, like xml, cpp, java etc.
+
+site:
+restricts the results to the given domain. site:mapelli.info will find all indexed page on www.mapelli.info, while site:mapelli.info doughnuts will find all doughnuts-related pages on www.mapelli.info .
+update: you can use the site operator also to find your supplemental results using this query: site:www.mapelli.info *** -sljktf. (taken from an intresting article about Google Supplemental Index Results by Aaron Wall)
+
+cache:
+shows the cached version of given webpage. Other words in the query will be highlighted in the returned page, try cache:www.mapelli.info doughnuts
+
+link:
+lists webpages that link to the given webpage. link:http://en.wikipedia.org/wiki/Doughnut will list webpages with links pointing to wikipedia’s voice for Doughnut
+
+related:
+returns pages that google somehow thiks are related to the given page. Not always accurate.
+
+info:
+returns some informations about the given web page. Typically website and description.
+
+define:
+returns the definition of a given word. Try define:doughnuts (in case you are an alien and you don’t know what a Doughnut is 8) )
+
+phonebook:
+search in residential phone book. sample: phonebook:smith Los Angeles
+
+stoks:
+returns stock info: try stocks:goog
+
+weather:
+weather informations for the given city. weather:los angeles
+
+movie:
+returns all movies related to the search term given. Sample: movie:doughnuts
+You can also find movies by locations: movie:nyc , movie 10015
+
+flights
+you can search for flights inside USA using the airport code (does not work for every airport). sample: jfk lax
+
+SEO-oriented Operators
+allintitle:
+Search for documents with the given words in their title. allintitle:doughnuts chocolate will find all the documents with title containing ‘doughnuts’ and ‘chocolate’. This operator cannot be combined with others.
+
+intitle:
+Search for documents with the first word after the intitle operator in their title. intitle:doughnuts chocolate will find all the documents with title containing ‘doughnuts’ and talking about chocolate. Note that the word ‘chocolate’ is not necessarily in the title.
+
+allintext:
+Search for documents with the given words in their text. allintext:doughnuts chocolate will find all the documents with text containing ‘doughnuts’ and ‘chocolate’.This operator cannot be combined with others.
+
+intext:
+Search for documents with the first word after the intext operator in their text. intext:doughnuts chocolate will find all the documents with text containing ‘doughnuts’ and talking about chocolate. Note that the word ‘chocolate’ is not necessarily in the text
+
+allinurl:
+Search for documents with the given words in their url. allinurl:doughnuts chocolate will find all the documents with url containing ‘doughnuts’ and ‘chocolate’. This operator cannot be combined with others.
+
+inurl:
+Search for documents with the first word after the inurl operator in their url. inurl:doughnuts chocolate will find all the documents with url containing ‘doughnuts’ and talking about chocolate. Note that the word ‘chocolate’ is not necessarily in the text
+
+allinanchor:
+Search for documents with the given words in an anchor. allinurl:doughnuts chocolate will find all the documents with anchor text containing ‘doughnuts’ and ‘chocolate’. This operator cannot be combined with others.
+
+inanchor:
+Search for documents with the first word after the operator in an anchor. inanchor:doughnuts chocolate will find all the documents with anchor containing ‘doughnuts’ and talking about chocolate. Note that the word ‘chocolate’ is not necessarily in an anchor.
+
+Google Calculator Guide
++ – * / % ^
+you can use Google as a calculator, using standard symbols, for example
+3+2 returns 5
+4-1 returns 3
+6*8 returns 48
+15/5 returns 3
+3^2 returns 9 (3 raised to power 2)
+5%2 returns 1 (the remainder after division)
+
+sqrt,nth root ofx
+sqrt(49) returns 7, if you need non-square roots you can use for example 3th root of 27.
+
+sin, cos, arctan, tan…
+google calculator supports various trigonometic functions, expecting a radians value, that can be expressed also using the pi constant: sin(pi/2), tan (2/3*pi)
+
+ln
+returns natural (base e) logarithm: ln(e^5)
+
+log
+returns base 10 logarithm: log(100)
+
+!
+returns n factorial: 3!
+
+Numbers can be entered also in hexadecimal, octal and binary base, using 0x, 0o and 0b prefixes, for example 5 +0xf+0b1001
+
+Conversions
+Google supports a lot of conversion tools, here is a small guide:
+
+in degrees / in radians
+you can convert radians to degrees: pi/2 in degrees or convert degrees into radians: 90 degrees in radians
+
+in hex / in binary / in octal / in decimal
+you can convert to each of the given bases: 16 in hex , 16 in octal, 16 in binary, 0×11 in decimal
+you can also use 2007 in roman numerals (in case you’re building a temple and you need to know how to write the year on it)
+
+distance conversions
+you can use 100miles in km , 1m in mm, but also 200000 km in light-second etc.
+
+speed, time, temperature
+just some samples:
+100mph in kph
+1 month in seconds
+280 kelvin in celsius
+50 fahrenheit in celsius
+
+currency
+3 € in $ or 3 euros in dollars
+
+cooking
+I love this…
+3 teaspoons in oz
+1 cup + 1 tablespoon in teaspoon
+
+There are a lot of others possible conversions, just try! :)
+
+Blogsearch
+Have a look at my google blogsearch tips
+
+

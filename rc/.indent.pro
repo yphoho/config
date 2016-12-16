@@ -1,0 +1,1 @@
+-bap -bbo -bc -bl -bli0 -bls -c0 -cbi0 -cd0 -cdw -cli0 -cp0 -cs -d0 -di2 -hnl -i4 -il0 -ip5 -l80 -lp -nbad -nbc -nbfda -ncdb -nce -ncs -nfc1 -nfca -npcs -nprs -npsl -nsaf -nsai -nsaw -nsc -nsob -nss -nut -ts4

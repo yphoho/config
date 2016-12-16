@@ -1,0 +1,12 @@
+https://wiki.ubuntu.com/UbuntuOne/FAQ
+
+
+How do I add my computer?
+
+10.04 LTS (Lucid)
+Close the Ubuntu One Preferences application window (if it's already open)
+Open Applications->Accessories->Passwords and Encryption Keys
+Under "Passwords", right-click on UbuntuOne token for https://ubuntuone.com and select Delete if it exists.
+Open your Terminal (located in Applications >> Accessories) and type the following:
+ u1sdtool -q; killall ubuntuone-login; u1sdtool -c
+

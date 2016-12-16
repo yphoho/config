@@ -1,0 +1,8 @@
+exfat in Ubuntu:
+http://code.google.com/p/exfat/
+https://launchpad.net/~relan/+archive/exfat
+
+sudo add-apt-repository ppa:relan/exfat
+sudo aptitude update
+sudo aptitude install fuse-exfat
+

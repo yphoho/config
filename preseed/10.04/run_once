@@ -1,0 +1,253 @@
+#!/bin/bash
+
+
+. /lib/lsb/init-functions
+
+
+case "$1" in
+    start)
+        log_daemon_msg "Starting setup ffsn"
+
+
+        # skip the prompt of svn
+        # make the svn to create file $HOME/.subversion/servers
+        log_daemon_msg "get servers for svn"
+        svn --help
+        su user -c "svn --help"
+
+        mv /root/.subversion/servers /root/.subversion/servers_back
+        wget http://192.168.1.253/ffsn/10.04/servers -O /root/.subversion/servers
+
+        mv /home/user/.subversion/servers /home/user/.subversion/servers_back
+        wget http://192.168.1.253/ffsn/10.04/servers -O /home/user/.subversion/servers
+
+        # install the libswt-gtk-3.4-java in 9.10,
+        # and libswt-gtk-3.5-java in 10.04
+        apt-get install libswt-gtk-3.5-java -y
+
+        # psql.txt used for postgres
+        log_daemon_msg "get psql.txt"
+        wget http://192.168.1.253/ffsn/psql.txt -O /home/user/psql.txt
+        su postgres -c "psql template1 < /home/user/psql.txt"
+
+
+        # passwd.txt used for passwd to read
+        log_daemon_msg "get passwd.txt"
+        wget http://192.168.1.253/ffsn/passwd.txt -O /home/user/passwd.txt
+
+
+        # change the password of postgres
+        log_daemon_msg "change the password of postgres"
+        passwd postgres < /home/user/passwd.txt
+
+
+
+
+        # postgresql setup file
+        log_daemon_msg "get postgresql config file"
+        mv /etc/postgresql/8.4/main/postgresql.conf /etc/postgresql/8.4/main/postgresql.conf_back
+        wget http://192.168.1.253/ffsn/10.04/postgresql.conf -O /etc/postgresql/8.4/main/postgresql.conf
+        mv /etc/postgresql/8.4/main/pg_hba.conf /etc/postgresql/8.4/main/pg_hba.conf_back
+        wget http://192.168.1.253/ffsn/10.04/pg_hba.conf -O /etc/postgresql/8.4/main/pg_hba.conf
+        service postgresql-8.4 restart
+
+
+
+
+
+
+
+
+
+
+
+        # setup the database
+        su - user -c "mkdir /home/user/ffsn_dmd_sql"
+        su - user -c "svn co http://192.168.1.253/repos/ffsn/ffsn_dmd/trunk/sql /home/user/ffsn_dmd_sql/sql --username yangpeng --password 123465"
+        mv /home/user/ffsn_dmd_sql/sql/cmd.sh /home/user/ffsn_dmd_sql
+        chmod a+x /home/user/ffsn_dmd_sql/cmd.sh
+        cd /home/user/ffsn_dmd_sql
+        sudo -u postgres ./cmd.sh
+
+
+        wget http://192.168.1.253/ffsn/10.04/db_ffsn -O /home/user/db_ffsn
+        chmod a+x /home/user/db_ffsn
+        su - postgres -c "/home/user/db_ffsn"
+
+
+        sudo -u postgres psql -d postgres -c "CREATE TRUSTED PROCEDURAL LANGUAGE 'plpgsql';"
+        sudo -u postgres psql -d postgres -f /usr/share/pgadmin3/pgagent.sql
+        su - postgres -c "pgagent dbname=postgres user=postgres -s /var/log/postgresql/pgagent.log"
+
+
+
+
+
+
+
+
+
+
+
+        # wget http://192.168.1.253/ffsn/9.10/rc.local -O /etc/rc.local
+        cd /etc
+        sed 's/^exit 0$/sudo su - postgres -c "pgagent dbname=postgres user=postgres -s \/var\/log\/postgresql\/pgagent.log"\n\nexit 0/' rc.local > hoho
+        mv hoho rc.local
+        chmod a+x rc.local
+
+
+
+        # add a user named "fastflux"
+        useradd -m fastflux
+        passwd fastflux < /home/user/passwd.txt
+        chsh -s /bin/bash fastflux
+        usermod -G admin -a fastflux
+
+
+        mkdir /var/run/fastflux
+        chown fastflux:fastflux /var/run/fastflux
+
+        mkdir -p /var/log/fastflux
+        chown fastflux:fastflux /var/log/fastflux
+
+
+
+        cd /home/user/
+        svn co http://192.168.1.253/repos/ffsn/pdi pdi --username yangpeng --password 123465
+        cd /home/user/pdi
+        svn co http://192.168.1.253/repos/ffsn/ffsn_detection/trunk fastflux --username yangpeng --password 123465
+
+
+        cp -rf /home/user/pdi/ /opt/
+        mv /opt/pdi/fastflux/fastflux /etc/init.d/
+        chmod a+x /etc/init.d/fastflux
+        chown root:root /etc/init.d/fastflux
+        chown -R fastflux:fastflux /opt/pdi
+        cd /opt/pdi
+        find . -name \*.sh -exec chmod a+x '{}' \;
+        cd /opt/pdi/fastflux/
+        ./dbserver_mod.sh 127.0.0.1
+        sysv-rc-conf fastflux on
+        /etc/init.d/fastflux start
+
+
+
+        # install the ffsn
+        apt-get install secsphere-gsh secsphere-torhub secsphere-chardet secsphere-agent secsphere-ipaddr secsphere-pyinotify secsphere-setuptools secsphere-bronado secsphere-libjson-c secsphere-python secsphere-sqlalchemy secsphere-meld3 secsphere-readline secsphere-supervisord secsphere-dnspython secsphere-psycopg2 secsphere-scapy secsphere-pycurl secsphere-sensor secsphere-tornado --force-yes -y
+
+
+
+
+# sudo vim /opt/secsphere/share/bro/filter.bro
+# redef restrict_filters += {
+#     ["DEFAULT"] = "not (ip broadcast or multicast)" ,
+#     ["detect_server"] = "not host 192.168.1.xxx",
+#     ["network"] = "net 192.168.1.0/24",
+#     ["dns_port"] = "port 53",
+# };
+
+
+# sudo vim /opt/secsphere/etc/bronado.conf
+# 修改network = 192.168.1.0/24
+
+
+# sudo vim /etc/supervisord.d/sensor.conf
+# 	command=/opt/secsphere/bin/bro -i eth1 /opt/secsphere/share/bro/bronado.bro
+
+
+
+
+        sysv-rc-conf secsphere-supervisord on
+        /etc/init.d/secsphere-supervisord start
+
+
+
+        cd /home/user
+        svn co http://192.168.1.253/repos/ffsn/dnsquery/trunk/DNSQuerySetup/src dnsquery_setup --username yangpeng --password 123465
+        cd /home/user/dnsquery_setup
+        /opt/secsphere/bin/python2.6 setup.py install
+
+
+        cd /home/user
+        svn co http://192.168.1.253/repos/ffsn/GeoIP-Python-1.2.4 --username yangpeng --password 123465
+        cd /home/user/GeoIP-Python-1.2.4/
+
+        /opt/secsphere/bin/python2.6 setup.py install
+
+        /etc/init.d/dnsq start
+
+
+        mv /etc/default/tomcat6 /etc/default/tomcat6_back
+        wget http://192.168.1.253/ffsn/10.04/tomcat6 -O /etc/default/tomcat6
+        service tomcat6 restart
+
+
+        echo "tomcat6 ALL=NOPASSWD: ALL" >> /etc/sudoers
+
+
+        # setup ffsn.war for tomcat6
+        log_daemon_msg "get ffsn.war"
+        wget http://192.168.1.253/ffsn/ffsn.war -O /home/user/ffsn.war
+        cd /var/lib/tomcat6/webapps
+        rm -rf ffsn*
+        cp -f /home/user/ffsn.war ./
+        service tomcat6 restart
+
+
+
+        # discarded
+        # mv /var/lib/tomcat6/conf/server.xml /var/lib/tomcat6/conf/server.xml_back
+        # wget http://192.168.1.253/ffsn/10.04/server.xml -O /var/lib/tomcat6/conf/server.xml
+
+
+# sudo vim /var/lib/tomcat6/webapps/ffsn/js/custom/main/mainboard.js
+# 查找到“function setTime()”
+# 修改intervallMillis = interval  * 16000;
+
+
+        mv /var/lib/tomcat6/conf/context.xml /var/lib/tomcat6/conf/context.xml_back
+        wget http://192.168.1.253/ffsn/10.04/context.xml -O /var/lib/tomcat6/conf/context.xml
+
+        service tomcat6 restart
+
+
+
+
+        rm -rf /var/lib/tomcat6/webapps/ffsn/images/*
+        ln -sf /var/cache/munin/www/localdomain/localhost.localdomain/cpu-day.png /var/lib/tomcat6/webapps/ffsn/images/
+        ln -sf /var/cache/munin/www/localdomain/localhost.localdomain/cpu-week.png /var/lib/tomcat6/webapps/ffsn/images/
+        ln -sf /var/cache/munin/www/localdomain/localhost.localdomain/cpu-month.png /var/lib/tomcat6/webapps/ffsn/images/
+        ln -sf /var/cache/munin/www/localdomain/localhost.localdomain/cpu-year.png /var/lib/tomcat6/webapps/ffsn/images/
+        ln -sf /var/cache/munin/www/localdomain/localhost.localdomain/memory-day.png /var/lib/tomcat6/webapps/ffsn/images/
+        ln -sf /var/cache/munin/www/localdomain/localhost.localdomain/memory-week.png /var/lib/tomcat6/webapps/ffsn/images/
+        ln -sf /var/cache/munin/www/localdomain/localhost.localdomain/memory-month.png /var/lib/tomcat6/webapps/ffsn/images/
+        ln -sf /var/cache/munin/www/localdomain/localhost.localdomain/memory-year.png /var/lib/tomcat6/webapps/ffsn/images/
+
+
+
+
+        # update the system
+        apt-get update
+        apt-get upgrade
+
+#####cleanup####
+        rm /home/user/ffsn.war
+
+        rm /home/user/db_ffsn
+        rm /home/user/psql.txt
+        rm /home/user/passwd.txt
+        rm /home/user/late_command
+
+        sysv-rc-conf run_once off
+        update-rc.d -f run_once remove
+        rm /etc/init.d/run_once
+	    ;;
+    stop)
+
+	    ;;
+    *)
+	    ;;
+esac
+
+exit 0
+

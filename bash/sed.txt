@@ -1,0 +1,13 @@
+find ./ -type f -not -perm -u=x -exec sed 's:/home/zdns/a:/home/zdnstest/a:g' {} \;
+
+
+for file in *; do
+    if [ -f $file ]; then
+       sed -i 's:/home/zdns/a:/home/zdnstest/a:g' $file
+    fi
+done
+
+
+
+http://sed.sourceforge.net/sed1line_zh-CN.html
+

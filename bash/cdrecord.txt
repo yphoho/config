@@ -1,0 +1,8 @@
+这个有点扯淡，在linux下竟然不管在命令行还是用Brasero都刻录失败了：
+record the iso file to cdr:
+wodim -devices
+wodim -scanbus
+
+sudo cdrecord -v -eject speed=24 dev=3,0,0 ubuntu-10.04.2-server-i386.iso 
+
+

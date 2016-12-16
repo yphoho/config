@@ -1,0 +1,33 @@
+diff -ur oldversion/ newversion/ >hoho.patch
+patch -p0 < hoho.patch
+
+
+
+
+diff:
+       -N  --new-file
+              Treat absent files as empty.
+
+
+
+patch:
+       -R  or  --reverse
+          Assume  that  this  patch  was  created  with  the old and new files
+          swapped.  (Yes, I'm afraid  that  does  happen  occasionally,  human
+          nature  being  what it is.)  patch attempts to swap each hunk around
+          before applying it.  Rejects come out in the swapped format.  The -R
+          option  does not work with ed diff scripts because there is too lit‐
+          tle information to reconstruct the reverse operation.
+
+          If the first hunk of a patch fails, patch reverses the hunk  to  see
+          if it can be applied that way.  If it can, you are asked if you want
+          to have the -R option set.  If it can't, the patch continues  to  be
+          applied normally.  (Note: this method cannot detect a reversed patch
+          if it is a normal diff and if the first command is an  append  (i.e.
+          it  should  have been a delete) since appends always succeed, due to
+          the fact that  a  null  context  matches  anywhere.   Luckily,  most
+          patches  add  or  change  lines  rather  than  delete  them, so most
+          reversed normal diffs begin with a delete, which  fails,  triggering
+          the heuristic.)
+
+

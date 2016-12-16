@@ -1,0 +1,39 @@
+launchpad里多出重复的图标：删除再恢复就得了。
+还有一种方法，没有试过：
+launchpad的数据文件应该在：
+~/Library/Application\ Support/Dock/
+把里边的db文件删除，然后重启所有的Dock进程也应该可以解决。
+
+
+
+linux 下访问hfsplus，此方法不可用，会导至macos死机重启，用exfat:
+Open Disk Utility under Applications -> Utilities
+Select the volume to disable journaling on.
+Choose Disable Journaling from the File menu.
+NOTE: In Mac OS X 10.4 and later, press Option to make Disable Journaling visible in the File menu.
+
+
+
+
+.bashrc与.bash_profile:
+http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html
+An exception to the terminal window guidelines is Mac OS X’s Terminal.app, which runs a login shell by default for each new terminal window, calling .bash_profile instead of .bashrc. Other GUI terminal emulators may do the same, but most tend not to.
+
+
+ 
+easy_install:
+http://packages.python.org/distribute/easy_install.html#mac-os-x-user-installation
+http://docs.python.org/library/site.html
+easy_install那个网页中说的不正确，在.pydistutils.cfg文件中写入的install_lib有问题，因为在macosx下，那个路径没有在python site模块之下，install_lib的路径应该写下边一条语句的输出：
+python -m site --user-site
+在我这里为：
+~/Library/Python/2.7/lib/python/site-packages
+
+
+
+http://www.mac52ipod.cn/post/apple-mac-os-x-system-upgrade-package-storage-location.php
+系统更新包的位置：
+/Library/Updates
+前提：下载完系统升级包后别立刻安装，否则安装、重启后，Mac 会自动删除它们。
+
+

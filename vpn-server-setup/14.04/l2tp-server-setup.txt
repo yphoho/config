@@ -1,0 +1,14 @@
+http://lowendtalk.com/discussion/25696/tutorial-ipsec-l2tp-vpn-on-ubuntu-14-04
+https://raymii.org/s/tutorials/IPSEC_L2TP_vpn_with_Ubuntu_14.04.html
+
+
+xl2tpd.conf
+ipsec.conf
+options.xl2tpd
+
+Replace %SERVERIP% with the external IP of your server in ipsec.conf.
+
+get PSK:
+openssl rand -hex 30
+
+more detail see ../l2tp-server-setup.txt

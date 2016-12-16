@@ -1,0 +1,139 @@
+系统
+# uname -a               # 查看内核/操作系统/CPU信息
+# head -n 1 /etc/issue   # 查看操作系统版本
+# cat /proc/cpuinfo      # 查看CPU信息
+# hostname               # 查看计算机名
+# lspci -tv              # 列出所有PCI设备
+# lsusb -tv              # 列出所有USB设备
+# lsmod                  # 列出加载的内核模块
+# env                    # 查看环境变量
+
+资源
+# free -m                # 查看内存使用量和交换区使用量
+# df -h                  # 查看各分区使用情况
+# du -sh <目录名>        # 查看指定目录的大小
+# grep MemTotal /proc/meminfo   # 查看内存总量
+# grep MemFree /proc/meminfo    # 查看空闲内存量
+# uptime                 # 查看系统运行时间、用户数、负载
+# cat /proc/loadavg      # 查看系统负载
+
+磁盘和分区
+# mount | column -t      # 查看挂接的分区状态
+# fdisk -l               # 查看所有分区
+# swapon -s              # 查看所有交换分区
+# hdparm -i /dev/hda     # 查看磁盘参数(仅适用于IDE设备)
+# dmesg | grep IDE       # 查看启动时IDE设备检测状况
+
+网络
+# ifconfig               # 查看所有网络接口的属性
+# iptables -L            # 查看防火墙设置
+# route -n               # 查看路由表
+# netstat -lntp          # 查看所有监听端口
+# netstat -antp          # 查看所有已经建立的连接
+# netstat -s             # 查看网络统计信息
+
+进程
+# ps -ef                 # 查看所有进程
+# top                    # 实时显示进程状态
+
+用户
+# w                      # 查看活动用户
+# id <用户名>            # 查看指定用户信息
+# last                   # 查看用户登录日志
+# cut -d: -f1 /etc/passwd   # 查看系统所有用户
+# cut -d: -f1 /etc/group    # 查看系统所有组
+# crontab -l             # 查看当前用户的计划任务
+
+服务
+# chkconfig --list       # 列出所有系统服务
+# chkconfig --list | grep on    # 列出所有启动的系统服务
+
+程序
+# rpm -qa                # 查看所有安装的软件包
+
+另外这里还有非常多的命令， 可以作为参考：
+http://www.pixelbeat.org/cmdline_zh_CN.html
+
+来源：http://bioops.info/2011/03/linux-system-command/
+
+
+
+
+
+
+
+
+
+http://wowubuntu.com/hardware-info.html
+
+linux 查看硬件信息：proc
+使用/proc查看的硬件信息虽然丰富，但是可读性不好，尤其是我这样的菜鸟，可谓天文！
+cat /proc/cpuinfo
+#查看CPU信息，内容很全哦！
+
+cat /proc/meminfo
+#查看内存信息。
+
+cat /proc/ioports
+#查看IO端口
+
+cat /proc/swaps
+#查看交换分区信息(/proc)
+
+cat /proc/interrupts
+#中断信息
+
+cat /proc/partitions
+#查看磁盘分区
+
+cat /proc/bus/usb/devices
+#查看USB设备
+
+cat /proc/bus/input/devices
+#查看输入设备：键盘鼠标
+
+cat /proc/bus/pci/devices
+#查看PCI设备
+
+cat /proc/loadavg
+#查看系统负载
+
+cat /var/log/demsg
+#查看开机检查的硬件，可以使用grep过虑：eth,cpu,mem,pci,usb,vga,sda……
+linux 查看硬件信息：终端命令行
+使用终端命令行查看的硬件信息可读性好很多了，而且也比较丰富。
+lscpu
+#查看CPU信息
+
+lspci
+#查看PCI设备
+
+lsusb
+#查看USB设备
+
+vmstat
+#报告虚拟内存统计信息
+
+fdisk -l
+#查看分区信息
+
+hdparm -i /dev/sda
+#查看磁盘参数
+
+df -h
+#查看磁盘分信息
+
+dmidecode
+#读取系统DMI表来显示硬件和BIOS信息。
+
+lsmod
+#当前加载的驱动
+
+dmesg
+#查看开机检查的硬件，可以使用grep过虑：eth,cpu,mem,pci,usb,vga,sda……
+
+uptime
+#查看系统负载
+NOTE:
+也可以安装其它软件查看硬件信息：aptitude install lshw hwinfo，这些也很强大的。
+

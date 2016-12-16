@@ -1,0 +1,34 @@
+How to change default display manager
+
+http://linuxandfriends.com/2008/09/06/change-default-display-manager-ubuntu-linux/
+
+
+Ubuntu is a fabulous Linux distribution – more so for its user friendliness. This is a simple tip to switch between display managers in Ubuntu Linux. Just for perspective, display managers are different from window managers or Desktops. Examples of display managers are kdm, gdm etc. While metacity, kwin and sawfish are window managers. GNOME, KDE, Xfce and so on are called desktops.
+
+A display manager provides the graphical login screen.
+Ubuntu by default has GDM (Gnome Display Manager) as the underlying display manager which powers GNOME. But sometimes while installing additional desktops such as KDE, some script might change the display manager to that of KDE which is kdm. Here is how you can change the display manager back to gdm.
+Open the file /etc/X11/default-display-manager in your favorite text editor. You need to use sudo to edit the file so it is a good thing to open the file in a terminal.
+
+$ sudo vi /etc/X11/default-display-manager
+
+This file contain one single line which is the full path of the display manager. For example, the file on my machine has the following line :
+
+# FILE : /etc/X11/default-display-manager
+/usr/sbin/gdm
+
+Change it to the program you wish to use as the underlying display manager for your GNOME or KDE desktops. I had KDE 4.1 installed on my Ubuntu machine and so I changed the path to that of the kdm.
+
+# FILE : /etc/X11/default-display-manager
+/usr/lib/kde4/bin/kdm
+
+Now reboot and you will be shown the login screen shown by the new display manager.
+
+
+Method 2 : Changing the display manager using a tool
+
+This method applies to all Debian based Linux distributions. Fire up a terminal and type the following :
+
+$ sudo dpkg-reconfigure gdm
+
+Substitue your current display manager in place of gdm above. And you will be walked through the nessessary steps.
+

@@ -1,0 +1,30 @@
+       Normally list options that are specifically stated  are  ORed  -  i.e.,
+       specifying  the  -i option without an address and the -ufoo option pro‐
+       duces a listing of all network files OR files  belonging  to  processes
+       owned by user ``foo''.
+
+       The -a option may be used to AND the selections.  For example, specify‐
+       ing -a, -U, and -ufoo produces a listing of only UNIX socket files that
+       belong to processes owned by user ``foo''.
+       Caution: the -a option causes all list selection options to  be  ANDed;
+       it can't be used to cause ANDing of selected pairs of selection options
+       by placing it between them, even though its placement there is  accept‐
+       able.   Wherever  -a  is  placed, it causes the ANDing of all selection
+       options.
+
+
+lsof -n -a -i tcp -c turpial
+
+sudo lsof -i :53
+sudo lsof -p `pgrep named`
+
+mac os x:
+       -P       This option inhibits the conversion of port  numbers  to  port
+                names  for  network files.  Inhibiting the conversion may make
+                lsof run a little faster.  It is also useful  when  port  name
+                lookup is not working properly.
+
+
+
+lsof -anPi tcp -c iTunes
+

@@ -1,0 +1,5 @@
+ssh-keygen -t rsa
+#cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
+#ssh-copy-id -i ~/.ssh/id_rsa.pub xxxxxx@xxxxxxxxxx
+ssh-copy-id xxxxxx@xxxxxxxxxx
+

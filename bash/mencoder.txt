@@ -1,0 +1,13 @@
+sudo apt-get install mencoder
+
+http://cubeman.org/linuxnotes.txt
+
+
+===================================================================
+mencoder -oac pcm -ovc copy -idx -o output.flv x.flv y.flv z.flv
+
+mencoder part1.flv part2.flv part3.flv -o all.flv -ovc copy -oac copy -of lavf -lavfopts format=flv   
+
+mencoder -forceidx -of lavf -oac pcm -ovc copy -o output.flv 01.flv 02.flv 03.flv 04.flv
+===================================================================
+

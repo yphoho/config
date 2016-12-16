@@ -1,0 +1,114 @@
+mkdir /usr/local/svn
+svnadmin create /usr/local/svn/repo
+
+mkdir -pv /tmp/svn-layout/{branches,tags}
+mv -v /home/hoho/workspace /tmp/svn-layout/trunk
+
+svn import /tmp/svn-layout/ file:///usr/local/svn/repo/ -m "init repository"
+
+rm -rf /tmp/svn-layout
+
+
+vim conf/svnserve.conf
+==========================
+[general]
+anon-access = read
+auth-access = write
+password-db = passwd
+# authz-db = authz
+=========================
+
+vim conf/passwd
+========================
+[users]
+user = passwd
+========================
+
+vim conf/authz
+========================
+
+在svnserve.conf打开authz-db选项，然后在这里设置权限，参见：
+http://blog.chinaunix.net/space.php?uid=10167808&do=blog&cuid=2079175
+
+========================
+
+svnserve -d -r /usr/local/svn
+
+
+
+
+the client can checkout:
+svn co svn://xx.xx.xx.xx/repo/trunk
+
+
+http://www.tonyspencer.com/2007/03/02/setup-a-subversion-server-in-4-minutes/
+http://blog.csdn.net/lwx2615/archive/2011/04/20/6337231.aspx
+http://hi.baidu.com/yarcowang/blog/item/6101cb25e1388d3b8744f9a0.html
+
+
+
+
+
+
+apache and svn:
+http://svnbook.red-bean.com/en/1.0/ch06s04.html
+
+httpd.conf
+================================
+<Location /svn>
+    DAV svn
+
+    # any "/svn/foo" URL will map to a repository /usr/local/svn/foo
+    SVNParentPath /usr/local/svn
+</Location>
+===============================
+
+
+
+
+
+SVN服务器版本库有两种格式,一种为FSFS,一种为BDB。
+把文件上传到SVN版本库后,上传的文件不再以文件原来的格式存储,而是被svn以它自定义的格式压缩成版本库数据,存放在版本库中。
+如果是FSFS格式，这些数据存放在版本库的db目录中，里面的revs和revprops分别存放着每次提交的差异数据和日志等信息
+
+
+
+
+
+
+
+
+在Subversion1.5.0版本以前，想要checkout出单个文件是不可能的事情。而在Subversion1.5.0中，引入了稀疏检出(Sparse checkouts)的特性，这使得检出单个文件成为可能。
+假设我们有一个版本库，访问地址为http://www.iusesvn.com/project1
+project1里面有一个目录images，目录里有很多图片文件，我们只想单独检出其中的logo.jpg
+logo.jpg完整访问地址为 project1/images/logo.jpg
+操作
+我们可以这样操作：
+1、检出目录images
+svn co --depth=empty http://www.iusesvn.com/project1/images images_work_dir
+这样就在本地形成了一个工作拷贝目录images_work_dir
+2、进入images_work_dir目录，单独更新logo.jpg
+svn up logo.jpg
+这样，我们就单独检出了logo.jpg，后面就可以对这个文件进行修改、提交等操作。
+
+
+
+
+
+http://weierophinney.net/matthew/archives/132-svnexternals.html
+svn:externals
+
+svn propedit svn:externals .
+============================
+framework http://framework.zend.com/svn/framework/trunk
+============================
+svn up
+svn ci -m "externals"
+
+
+
+svn propedit svn:ignore .
+
+
+svn switch --relocate http://1.1.1.1/svn/repo/ http://2.2.2.2/svn/repo/
+

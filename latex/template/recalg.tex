@@ -1,0 +1,234 @@
+\documentclass{beamer}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+%% \usepackage[latin1]{inputenc}
+
+\newfontfamily\monaco{Monaco}
+\setromanfont{Monaco}
+
+\title[Introduction to Recommender System]{Introduction to Recommender System}
+\institute[]{}
+\author{yangpeng02@58.com}
+\date{Apr 11, 2012}
+
+
+%% \usetheme{Warsaw}
+
+
+\begin{document}
+
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+%% \begin{frame}
+%%   \tableofcontents
+%% \end{frame}
+
+
+\begin{frame}
+  \frametitle{Menu}
+  \begin{itemize}
+
+  \item Overview
+  \item Collaborative Filtering
+
+  \item Association Rules
+  \item AR in youtube
+
+  \item Tag-based Recommender
+
+  \end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+  \frametitle{Overview}
+  \begin{itemize}
+  \item Content-based Recommendation \\
+    Pandora(Music Genome Project)
+  \item Collaborative Recommendation \\
+    Amazon, douban
+  \item Hybrid Approach
+  \end{itemize}
+\end{frame}
+
+
+
+\section[CF]{Collaborative Filtering}
+
+\begin{frame}
+  \frametitle{Collaborative Filtering}
+  \begin{itemize}
+  \item User–based
+  \item Item–based
+  \item Model-based
+
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+  \frametitle{User-based CF}
+
+  \begin{itemize}
+    \pause
+  \item collect rating info \\
+    \pause
+    \begin{tabular}{ | l | l | l | l | l |}
+      \hline
+      user & item1 & item2 & ... & itemn \\
+      \hline
+      1 & 5 & 3 & ... & 5 \\
+      \hline
+      2 & 1 & 4 & ... & 4 \\
+      \hline
+      ... & ... & ... & ... & ... \\
+      \hline
+      n & 2 & 1 & ... & 4 \\
+      \hline
+    \end{tabular}
+
+    \pause
+  \item calculate the similarity \\
+    \pause
+    \begin{enumerate}
+    \item Cosine Similarity: \\
+      sim(u,v)=$\frac{\vec u \cdot \vec v}{\lvert \vec u \rvert * \lvert \vec v \rvert}$
+    \item Pearson Correlation Coefficient: \\
+      sim(u,v)=$\frac{\sum_{i=1}^{n} (R_{u,i} - \overline{R_{u}})(R_{v,i} - \overline{R_{v}})}{\sqrt{\sum_{i=1}^{n} (R_{u,i} - \overline{R_{u}})^2}\sqrt{\sum_{i=1}^{n} (R_{v,i} - \overline{R_{v}})^2}}$
+    \end{enumerate}
+
+    \pause
+  \item genarate the recommender
+
+  \end{itemize}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}
+  \frametitle{Item-based CF}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Model-based CF}
+
+  \begin{itemize}
+
+  \item Summary from wikipedia: \\
+  This approach has a more holistic goal to uncover latent factors that explain observed ratings. Most of the models are based on creating a classification or clustering technique to identify the user based on the test set.
+
+  \item algorithms: Bayesian Networks, RBM, clustering models, LSI, LDA, SVD
+  \end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+\section[AR]{Association Rules}
+
+\begin{frame}
+  \frametitle{Association Rules}
+  \begin{itemize}
+
+  \item Metric: \\
+    Support(A->B)=P(AB) \\
+    Confidence(A->B)=P(B|A)=$\frac{P(AB)}{P(A)}$ \\
+
+  \item algorithms: Apriori, Eclat
+
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{AR in youtube}
+  paper: The YouTube Video Recommendation System
+
+\end{frame}
+
+
+
+
+
+
+
+\section[tag]{Tag-based Recommender}
+
+
+\begin{frame}
+  \frametitle{Tag-based Recommender}
+
+  \begin{itemize}
+  \item p(u,i)=$\sum_{t\in (T_{u} \bigcap T_{i})} n_{u,t}n_{i,t}$
+    \pause
+  \item get the rating from tag
+  \end{itemize}
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+%% \begin{frame}{Replication}
+%%   http://redis.io/topics/replication \\
+%%   \pause
+%%   \begin{block}{facts:}
+%%     master to slave \\
+%%     slave to slave \\
+%%     master non-blocking \\
+%%     \emph{substitute for persistence} \\
+%%   \end{block}
+%%   \pause
+%%   \begin{block}{detail:}
+%%     1. master background saving; \\
+%%     2. transfers the database file; \\
+%%     3. send all accumulated commands. \\
+%%     ~\\
+%%     \pause
+%%     show by telnet \\
+%%   \end{block}
+%%   \pause
+%%   \begin{block}{configuration:}
+%%     slaveof 192.168.1.1 6379 \\
+%%   \end{block}
+
+%% \end{frame}
+
+
+
+
+
+\end{document}
+

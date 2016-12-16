@@ -1,0 +1,41 @@
+http proxy:
+Setting up proxy at Firefox do not have effects at console, which means your wget, ssh, apt-get, yum etc do not access through the proxy you set at Firfox browser. To setup http proxy at console, you can do as bellow, assume the proxy IP is 219.93.2.113 and port 3128.
+export http_proxy='http://219.93.2.113:3128/'
+Remember, you have to specified http://, and to know more about export, check out HERE.
+To clear your http proxy and use back yours, do this:
+export http_proxy=''
+
+with auth:
+export http_proxy=http://username:password@proxy.thing.com:8080/
+
+
+
+
+socks proxy:
+http://blog.creke.net/770.html
+
+Windows下的有：
+Proxifier, ProxyCap
+前者比较好用，可控规则较多。
+Linux下的有：
+proxychains, redsocks, tsocks
+proxychain功能较多，支持多个代理轮询等；redsocks据说支持android；tsocks配置简单。
+tsocks在ubuntu 11.10上不好用，proxychain可用。
+
+http://britecute.appspot.com/article/articleId=120002
+http://vastars.info/linux/tsocks.html
+
+
+
+proxychains:
+安装：
+sudo apt-get install proxychains
+配置：
+sudo vim /etc/proxychains.conf
+把最后的“[ProxyList]”部分配置为自己的代理即可：
+socks5  127.0.0.1 7070
+使用方法：
+proxychains <程序名>
+即可让程序使用代理。
+
+

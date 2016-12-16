@@ -1,0 +1,3 @@
+sudo add-apt-repository ppa:ogre-team/ogre
+sudo aptitude install ogre-samples-bin ogre-samples-media ogre-samples-source 
+

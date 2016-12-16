@@ -1,0 +1,69 @@
+ssh -CNfT -D 127.0.0.1:1234 username@ipaddress
+
+     -C      Requests compression of all data (including stdin, stdout,
+             stderr, and data for forwarded X11 and TCP connections).  The
+             compression algorithm is the same used by gzip(1), and the
+             “level” can be controlled by the CompressionLevel option for pro‐
+             tocol version 1.  Compression is desirable on modem lines and
+             other slow connections, but will only slow down things on fast
+             networks.  The default value can be set on a host-by-host basis
+             in the configuration files; see the Compression option.
+
+     -N      Do not execute a remote command.  This is useful for just for‐
+             warding ports (protocol version 2 only).
+
+     -f      Requests ssh to go to background just before command execution.
+             This is useful if ssh is going to ask for passwords or
+             passphrases, but the user wants it in the background.  This
+             implies -n.  The recommended way to start X11 programs at a
+             remote site is with something like ssh -f host xterm.
+
+     -T      Disable pseudo-tty allocation.
+
+     -g      Allows remote hosts to connect to local forwarded ports.
+
+     -p port
+             Port to connect to on the remote host.  This can be specified on
+             a per-host basis in the configuration file.
+
+
+
+
+要是解析不到正确的地址，就把你的DNS服务器设置成google的DNS服务器：
+8.8.8.8
+
+
+
+ssh -CND 7070 livessh@67.202.80.224
+ssh -CND 7070 livessh@41.223.52.13
+ssh -CND 7070 livessh@67.202.80.166
+check out the password at: http://livessh.com/
+
+
+ssh -CND 7070 ssh2proxy.com@173.0.51.222
+check out the password at: http://free.ssh2proxy.com/
+
+
+ssh -CND 7070 freessh@f1.51myssh.tk
+password: 51myssh.tk
+
+
+ssh -CND 7070 free@ssh01.ssh6.tk
+check out the password at: http://www.ssh91.com/freessh.html
+
+
+ssh -CND 7070 -p 8888 onlybird@184.82.230.126
+http://blog.onlybird.com/%E5%85%8D%E8%B4%B9ssh%E4%BB%A3%E7%90%86
+
+
+http://www.ssh4gfw.com/index.jsp
+
+
+ssh -CND 7070 free@free1.ysvpn.com
+ssh -CND 7070 free@free2.ysvpn.com
+http://www.yishanhome.com/freevpn
+
+
+http://alidage.org/#account
+http://www.cjb.net/cgi-bin/shell.cgi?action=signup
+

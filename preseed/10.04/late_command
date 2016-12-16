@@ -1,0 +1,6 @@
+#!/bin/bash
+
+wget http://192.168.1.253/ffsn/10.04/run_once -O /etc/init.d/run_once
+chmod a+x /etc/init.d/run_once
+update-rc.d run_once defaults 99
+

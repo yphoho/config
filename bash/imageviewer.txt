@@ -1,0 +1,7 @@
+console only:
+sudo fbi xxxx
+
+ascii based:
+cacaview xxxx
+
+

@@ -1,0 +1,33 @@
+pdfinfo x.pdf
+
+pdftk x.pdf dump_data output r.t
+vim r.t
+====================================
+InfoKey: Title
+InfoValue: Dynamo: Amazon&#8217;s Highly Available Key-value Store
+InfoKey: Author
+InfoValue: Rose
+InfoKey: Subject
+InfoValue: gnuplot plot
+InfoKey: Keywords
+InfoValue: slides
+InfoKey: Creator
+InfoValue: PScript5.dll Version 5.2.2
+InfoKey: Producer
+InfoValue: Acrobat Distiller 7.0.5 (Windows); modified using iText 2.1.7 by 1T3XT
+InfoKey: ModDate
+InfoValue: D:20110903160004+08'00'
+InfoKey: CreationDate
+InfoValue: D:20070815090949-04'00'
+PdfID0: a748a3d6b5ece167e68d5a841d6346f4
+PdfID1: d9d1f94ebc49d2bec8c3823960c364ee
+NumberOfPages: 16
+PageLabelNewIndex: 1
+PageLabelStart: 1
+PageLabelNumStyle: DecimalArabicNumerals
+====================================
+pdftk x.pdf update_info r.t output r.p
+mv r.p x.pdf
+
+pdfinfo x.pdf
+

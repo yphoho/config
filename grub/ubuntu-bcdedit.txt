@@ -1,0 +1,18 @@
+bcdedit /create /d "Ubuntu 10.04 LTS" /application BOOTSECTOR
+################################
+bcdedit will return an ID for this entry that we will use latter,
+which is {894c6118-7b6a-11df-8558-78dd08b4acc2} in this case.
+################################
+
+bcdedit /set {894c6118-7b6a-11df-8558-78dd08b4acc2} device partition=C:
+
+bcdedit /set {894c6118-7b6a-11df-8558-78dd08b4acc2} path \ubuntu.grub
+
+bcdedit /displayorder {894c6118-7b6a-11df-8558-78dd08b4acc2} /addlast
+
+
+
+bcdedit /timeout 2
+
+bcdedit /default {894c6118-7b6a-11df-8558-78dd08b4acc2}
+

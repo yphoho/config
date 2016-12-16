@@ -1,0 +1,75 @@
+之前使用gmail经常出现掉线状态，很多时候邮件好不容易写完，无法发送。  (GFW)
+前几天公司听公司群里兄弟将使用 ipv6没有这问题，于是赶紧在Ubuntu下试了下，成功使用gmail over ipv6，记录下：
+1：apt-get install miredo                    # teredo for linux 安装后新建 teredo 这个 虚拟网卡设备。
+2：ping6 -n -c1 ipv6.google.com       # 测试 OK
+3：先试试查询ipv6.google.com
+root@ming-laptop:~# dig @8.8.8.8 ipv6.google.com AAAA +short
+ipv6.l.google.com.
+2404:6800:8005::93                     # 使用AAAA 正常查到。
+root@ming-laptop:~#
+# 因为ipv6.google.com只有ipv6记录，所以也可以通过流量ipv6.google.com来测试ipv6访问是否OK
+4：查询mail.google.com 的ipv6记录。
+root@ming-laptop:~# dig @8.8.8.8 mail.google.com AAAA +short
+googlemail.l.google.com.
+root@ming-laptop:~#
+# 只返回了CNAME。
+# 因为google DNS 匹配带源IP是ipv4地址，只能用ipv6作为源IP才能返回。
+# 详细见 http://www.google.com/intl/en/ipv6/
+现在使用ipv6查询
+root@ming-laptop:~# dig @2001:470:20::2 mail.google.com AAAA +short
+googlemail.l.google.com.
+2a00:1450:8004::53
+root@ming-laptop:~#
+# 最后绑定hosts，保证后续gmail直接访问ipv6， (不设置2001:470:20::2为ns)
+# 最后打开 chrome访问OK。  这几天使用中没有出现掉线情况。
+
+
+
+
+dig @2001:470:20::2 mail.google.com AAAA
+
+
+# google
+2a00:1450:4001:c01::63 www.google.com
+2a00:1450:4001:c01::11 mail.google.com
+2a00:1450:4001:c01::5b www.youtube.com
+2404:6800:8005::8a plus.google.com
+2404:6800:8005::71 profiles.google.com
+2404:6800:8005::65 plusone.google.com
+
+203.208.46.29 talkgadget.google.com 
+203.208.46.29 docs.google.com
+
+
+# twitter
+184.29.20.124 platform.twitter.com
+199.59.148.84 twitter.com
+199.59.148.84 scribe.twitter.com
+199.59.148.243 scribe.twitter.com
+199.59.148.201 www.twitter.com
+199.59.148.96 mobile.twitter.com
+184.31.47.144 si0.twimg.com
+118.215.7.144 si0.twimg.com
+98.142.98.53 si0.twimg.com
+184.50.207.144 si1.twimg.com
+184.50.207.144 si2.twimg.com
+184.50.207.144 si3.twimg.com
+184.50.207.144 si4.twimg.com
+184.50.207.144 si5.twimg.com
+199.59.148.139 userstream.twitter.com
+199.59.148.138 betastream.twitter.com
+199.59.149.208 api.twitter.com
+199.59.149.209 api.twitter.com
+199.59.149.210 api.twitter.com
+199.59.148.201 search.twitter.com
+199.59.149.209 status.twitter.com
+
+
+
+# facebook
+2620:0:1cfe:face:b00c::b facebook.com
+2620:0:1cfe:face:b00c::b www.facebook.com
+
+
+
+

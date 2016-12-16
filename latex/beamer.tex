@@ -1,0 +1,71 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+\usetheme{Warsaw}
+%\usetheme{Boadilla}
+\title[Make a LaTeX presentation using Beamer]{Introduction  to Beamer\\How to make a presentation with LaTeX?}
+\author{Nadir Soualem -- Astozzia}
+\institute{Math-linux.com}
+\date{Jule 13, 2007}
+
+
+\begin{document}
+
+
+%% titlepage
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Introduction}
+  This is a short introduction to Beamer class.
+\end{frame}
+
+%% columns
+\begin{frame}
+  \begin{columns}[c] % the "c" option specifies center vertical alignment
+    \column{.5\textwidth} % column designated by a command
+    Contents of the first column
+    \column{.5\textwidth}
+    Contents split \\ into two lines
+  \end{columns}
+\end{frame}
+
+%% \begin{frame}
+%%   \begin{columns}[t] % contents are top vertically aligned
+%%     \begin{column}[5cm] % each column can also be its own environment
+%%       Contents of first column \\ split into two lines
+%%     \end{column}
+%%     \begin{column}[T]{5cm} % alternative top-align that's better for graphics
+%%       %% \includegraphics[height=3cm]{graphic.png}
+%%     \end{column}
+%%   \end{columns}
+%% \end{frame}
+
+%% blocks
+\begin{frame}
+  \begin{block}{Block Heading}
+    Enlosing text in the ``block'' environment creates a distinct, headed block of text.
+  \end{block}
+  \begin{block}{Second Block Heading}
+    This lets you visually distinguish parts of your slide easily.
+  \end{block}
+\end{frame}
+
+
+%% revealing things incrementally
+\begin{frame}
+  Since I may want to focus on one item at a time in my presentation,
+  \begin{itemize}
+  \item I want to reveal only the first item on my list initially,
+    \pause
+  \item then the second item,
+    \pause
+  \item then the third,
+    \pause
+  \item and so on...
+  \end{itemize}
+\end{frame}
+
+
+\end{document}
+

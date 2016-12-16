@@ -1,0 +1,21 @@
+https://launchpad.net/~seriy-pr/+archive/network-manager-l2tp
+
+
+Packages for https://github.com/seriyps/NetworkManager-l2tp
+Screenshot: http://dl.seriyps.ru/img/network-manager-l2tp.png
+Full description (in russian) http://seriyps.ru/blog/2012/01/31/plagin-l2tp-dlya-networkmanager/
+Installation:
+sudo apt-add-repository ppa:seriy-pr/network-manager-l2tp
+sudo apt-get update
+sudo apt-get install network-manager-l2tp-gnome
+!!!!!!!!!!!!!!!!!!
+sudo service xl2tpd stop
+sudo update-rc.d xl2tpd disable
+!!!!!!!!!!!!!!!!!!
+
+
+
+setup with gui:
+disable "Available to all users";
+disable "IPsec Settings"
+disable "Use Point-to-Point encryption (MPPE)"

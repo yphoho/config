@@ -1,0 +1,17 @@
+autoscan
+rm autoscan.log
+mv configure.scan configure.ac
+
+
+AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+
+
+
+cp xxxxx/autogen.sh ./
+
+
+
+
+
+
+

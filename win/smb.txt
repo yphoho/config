@@ -1,0 +1,24 @@
+sudo aptitude install samba
+smbclient -L //localhost
+smbclient //localhost/share
+
+
+
+
+smb.conf file:
+=======================================
+[global]
+workgroup = ubuntu11.04
+netbios name = yangpeng
+server string = Linux Samba Server
+lanman auth = yes
+client lanman auth = yes
+security = share
+
+[bind9]
+path = /home/yangpeng/Documents/bind9
+guest ok = yes
+#writeable = no
+#browseable = yes
+=======================================
+

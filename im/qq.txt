@@ -1,0 +1,25 @@
+1.check out the libqq-pidgin:
+http://code.google.com/p/libqq-pidgin/
+
+svn checkout http://libqq-pidgin.googlecode.com/svn/trunk/ libqq-pidgin
+
+2.add the pidgin ppa to system:
+https://launchpad.net/~pidgin-developers/+archive/ppa/
+
+add ppa key:
+sudo add-apt-repository ppa:pidgin-developers/ppa
+
+add to /etc/apt/sources.list:
+=========================================================================
+deb http://ppa.launchpad.net/pidgin-developers/ppa/ubuntu lucid main 
+deb-src http://ppa.launchpad.net/pidgin-developers/ppa/ubuntu lucid main 
+=========================================================================
+
+3.go:
+sudo aptitude update && sudo aptitude upgrade
+
+under libqq-pidgin:
+./configure && make && sudo make install
+
+fire the empathy to enjoy
+

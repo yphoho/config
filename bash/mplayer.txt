@@ -1,0 +1,26 @@
+shift + 3: 切换声道
+j: change the subtitle
+v: disable/enable subtitle
+
+
+subtitle:
+http://www.leyle.com/archives/332001
+首先是字幕设置，涉及字体，编码，颜色等
+下面的参数都是写入mplayer的 配置文件的，一般在 ~/.mplayer/config 文件里面
+================================================================
+subcp=gb2312 #设置字幕编码方式，主要有utf-8,cp936,gbk,gb2312…
+font=/usr/share/fonts/truetype/wqy/wqy-microhei.ttc #字体文件位置
+overlapsub=1 # 同一时间显示多条语言字幕，某些情况下可以中英文同时显示
+ass=1 #转换字幕为ass方式，这个时候，如果不设置字幕颜色，膜热是黄色
+subfont-autoscale=1
+subfont-text-scale=7 #字幕的字体大小，一般设置在5~8的范围，太大太小都不杂个爽
+subfont-osd-scale=5 #左上角的时间，中间的进度条显示大小
+=================================================================
+在windows 下使用ww编译版 mplayer 的时候，发现字幕文件只要一般相同就可以加载了，默认情况下，linux下的mplayer加载的字幕必须要和电影文件名完全一样才能
+加载，比如说有tokyo-hot.avi , tokyo-hot.chs.srt , 那么现在就无法自动加载字幕了，
+所以添加下面这个设置就可以了
+sub-fuzziness=1
+这样，就可以在冬天看东京很热了。
+在ass中，还有两个参数，可以设置字体的颜色，阴影什么的，
+ass-color=FFFFFF00 #这个是设置字体颜色，目前就是白色了，颜色代码是RRGGBBAA， AA是啥子意思，我也不晓得，
+ass-border-color=5165C640 #字体边框颜色，据说可以让字边框半透明，颜色代码意思同上。

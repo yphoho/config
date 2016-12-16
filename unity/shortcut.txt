@@ -1,0 +1,42 @@
+http://www.techdrivein.com/2011/04/31-useful-ubuntu-1104-unity.html
+
+Ubuntu 11.04 Unity Shortcuts
+
+Ubuntu Unity Shortcuts
+
+    Super Key(Windows Key) - Opens dash.
+    Hold Super Key - Invokes Launcher.
+    Hold Super Key and hit 1, 2, 3 etc - Open an Application from Launcher. When you hold the Super Key, specific numbers will be displayed in order above each application.
+    Alt + F1 - Put keyboard focus on the Launcher, use arrow keys to navigate, Enter launches the application, Right arrow exposes the quicklists if an application has them.
+    Alt + F2 - Opens dash in special mode to run any commands. 
+    Super + A - Opens up application window from launcher.
+    Super + F - Opens up files and folders window from launcher. Both these shortcuts can be viewed by simply holding the Super Key as well.
+    Super + W - Spread mode, zoom out on all windows in all workspaces.
+    Super + D - Minimize all windows(acts as Show Desktop). Hitting it again restores them.
+    Super + T - Opens trash can.
+    Super + S - Expo mode (for everything), zooms out on all the workspaces and let's you manage windows.
+    Ctrl + Alt + T - Launch Terminal.
+    Ctrl + Alt + L - Lock Screen.
+    Ctrl + Alt + Left/Right/Up/Down - Move to new workspace.
+    Ctrl + Alt + Shift + Left/Right/Up/Down - Place window to a new workspace.
+    F10 - Open the first menu on top panel, use arrows keys to browse across the menus.
+
+Mouse Shortcuts/Tricks for Ubuntu Unity
+
+    Clicking and holding an icon and then dragging it around will allow you to reorder it on the launcher. You can also drag it off to the right of the launcher to move it around. Note that you need to make an explicit movement to the right to move the icon off the launcher before you can move it around.
+    Dragging and Dropping an icon into the trash can will remove it from the Launcher. 
+    Moving and holding the cursor on the left side for a few seconds will launch Unity dock.
+    Moving the cursor to top-left corner(near Ubuntu icon) will launch Unity dock as well.
+    Scrolling the mouse wheel while over the Launcher scrolls the icons if you have too many and need to move around quickly.
+    By Scrolling the mouse wheel while over the Sound icon on top panel helps you increase or decrease system volume.
+    Middle click on an application's launcher icon - Open a new instance of the application in a new window. Very useful at times. In laptops with touchpads, hitting left/right click buttons together is akin to middle click.
+    Maximizing - Dragging a window to the top panel will maximize it.
+    Restore/Unmaximize - Dragging the top panel down OR double clicking on the top panel will do.
+    Tiling - Dragging a Window to the left/right border will auto tile it to that side of the screen. One of the highlights of new Unity experience.
+And Some Useful Window Management Shortcuts(Generic)
+    Alt + F10 - Toggle between Maximize/Unmaximize current window.
+    Alt + F9 - Minimize current window.
+    Alt + Tab - Toggle between currently open windows.
+    Alt + F4 - Closes current window.
+    Alt + F7 - Moves the current window(both keyboard and mouse can be used).
+

@@ -1,0 +1,40 @@
+%\documentclass[12pt,a4paper]{article}
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+
+%% auto wrap in chinese
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+%\usepackage[latin1]{inputenc}
+
+
+%\newcommand\hei{\fontspec[ExternalLocation=/usr/local/share/fonts/msfonts/]{simhei.ttf}}
+%\newcommand\kai{\fontspec[ExternalLocation=/usr/local/share/fonts/msfonts/]{simkai.ttf}}
+%\newcommand\song{\fontspec[ExternalLocation=/usr/local/share/fonts/msfonts/]{simsun.ttc}}
+
+\setmainfont{WenQuanYi Micro Hei}
+%% \setromanfont{Monaco}
+
+
+
+\begin{document}
+
+<Monaco>xetex il1IL oO0
+
+xetex 可以使用系统自带的WenQuanYi，而不需要再另外生成。
+
+~\\
+
+演示空行
+
+一个非常长的句子一个非常长的句子一个非常长的句子一个非常长的句子一个非常长的句子一个非常长的句子
+
+\end{document} 
+

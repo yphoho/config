@@ -1,0 +1,106 @@
+用gdb查看内存：
+格式: x /nfu <addr>
+说明：
+x 是 examine 的缩写
+n表示要显示的内存单元的个数
+f表示显示方式，可取如下值：
+    x 按十六进制格式显示变量
+    d 按十进制格式显示变量
+    u 按十进制格式显示无符号整型
+    o 按八进制格式显示变量
+    t 按二进制格式显示变量
+    a 按十六进制格式显示变量
+    i 指令地址格式
+    c 按字符格式显示变量
+    f 按浮点数格式显示变量
+u表示一个地址单元的长度：
+    b表示单字节
+    h表示双字节
+    w表示四字节
+    g表示八字节
+比如 x /10cb 0x6167ed，就是从0x6167ed开始显示，以字节为单位，一共显示10个字节。
+
+
+gud(Grand Unified Debugger):
+http://emacser.com/emacs-gdb.htm
+
+CFLAGS="-g" ./configure
+
+M-x gdb RET
+
+
+gdb 启动gdb进行调试
+gdb-many-windows    切换单窗格/多窗格模式
+gdb-restore-windows 恢复窗格布局
+
+
+首先将断点设置在要调试的地方。有两种方法：
+第一种，在要设置断点的行左边的fringe上单击一下（就是文本左边与滚动条之间空出的那一块）。隐藏了fringe的朋友可以M-x fringe-mode显示它。
+第二种，使用默认快捷键C-x C-a C-b, 或者 C-x <SPC>。它们都关联到命令gud-break。
+
+要删除断点，同样有两种对应的方法：在fringe的断点上单击一下，或者使用快捷键C-x C-a C-d（对应命令gud-remove）。
+
+可以在断点buffer上单击某个断点切换到断点所在位置。将光标移动到断点处回车也有同样的效果。
+
+在断点buffer上按空格键可以切换断点的激活和禁用状态。
+
+在调试中最常用的功能就是单步执行了。单步执行有两种：将函数调用作为一条语句执行（Next）和遇到函数时进入函数中进行调试（Step）。
+
+要使用第一种方式，默认快捷键是C-x C-a C-n，对应命令为gud-next。也可以单击工具栏上的  。
+
+第二种方式的默认快捷键是C-x C-a C-s，对应命令为gud-step。也可以单击工具栏上的  。
+
+如果想跳出当前函数，可以使用命令gud-finish，默认快捷键为C-x C-a C-f，工具栏上有  可用。
+
+在Emacs中还可以运行到光标所在的行。使用命令gud-until即可，默认快捷键为C-x C-a C-u。1
+
+也可以直接把当前语句指示器拖到任意一行，程序会运行到那一行再停下来。
+
+
+小结
+添加断点    gud-break   C-x C-a C-b 或 C-x <SPC>
+删除断点    gud-remove  C-x C-a C-d
+运行/继续程序   gud-go  无
+单步执行，无视函数  gud-next    C-x C-a C-n
+单步执行，进入函数  gud-step    C-x C-a C-s
+跳出当前函数    gud-finish  C-x C-a C-f
+运行到光标所在语句  gud-until   C-x C-a C-u
+继续运行程序    gud-cont    C-x C-a C-r
+
+
+
+如果打开了gdb-many-windows，在右上角会显示Locals buffer，其中显示了当前局部变量的值。如果显示的是寄存器（Register）buffer，单击左边的Locals就可以切换到Locals　buffer了。在其中可以方便地观察到各变量的值。
+如果没有打开gdb-many-windows，也可以使用gdb-display-locals-buffer来显示该buffer。
+遇到一些Locals里没有显示的变量，或者比较复杂的结构，就需要用到观察变量的功能了。
+
+将光标停留在要观察的变量上，执行命令gud-watch，可以将变量加入观察列表中。默认的快捷键是C-x C-a C-w。
+被观察的变量将在Speedbar中显示。对于复杂结构，可以单击Speedbar上的+号将其展开或收缩。在+号上按空格键也有相同的效果。
+有时候Emacs观察的变量不是你所想要的，一般是a->b这类的情况。这时可以将要观察的部分选中，再使用上述方法即可。
+可以用gud-tooltip-mode开启或关闭工具提示。开启后将鼠标指针停留在变量名上时将在工具提示中显示变量的值。
+
+
+小结
+观察变量    gud-watch   C-x C-a C-w
+展开/收缩变量       <SPC>
+开启/关闭工具提示   gud-tooltip-mode
+
+
+默认来说，程序的输入输出是在gdb buffer里显示的。这样输出信息和gdb信息混合在一起，阅读起来非常不便。这时候，你需要把输入输出单独显示在一个buffer里，方便查看。
+
+使用gdb-use-separate-io-buffer，可以在程序代码buffer右侧新建一个IO buffer，程序对标准输入输出的操作都会重定向到这里。再执行一次该命令则会隐藏。
+需要输入数据的时候，只需要在IO buffer中输入数据回车即可。已经输入的数据会被加粗，以和输出信息区分开来。
+
+有时候我们已经准备好了用于输入的数据在文件中，以避免调试时烦琐的输入。这时候就需要在调试时进行输入输出重定向了。
+
+要进行重定向，只能使用gdb自带的功能。在gdb buffer中输入 run < data.in > data.out 就可以将标准输入重定向到data.in，将标准输出重定向到data.out了。
+
+
+http://www.gnu.org/software/emacs/manual/html_node/emacs/Debuggers.html#Debuggers
+
+
+
+
+http://www.delorie.com/gnu/docs/gdb/gdb_26.html
+set follow-fork-mode child
+
+

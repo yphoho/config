@@ -1,0 +1,59 @@
+sudo aptitude install texlive
+sudo aptitude install latex-cjk-chinese
+
+http://docs.huihoo.com/homepage/shredderyin/tex_frame.html
+http://www.dutor.net/index.php/2009/06/ubuntu-texlive-cjk/
+
+http://blog.jjgod.org/2009/11/21/chinese-in-tex-live-2009/
+http://www.tug.org/texlive/doc.html
+
+
+安装了simsun之后字体不能用，编译出错，要把
+\begin{CJK}{UTF8}{song}
+改成
+\begin{CJK}{UTF8}{gbsn}
+不知道是不是simsun没能安装上才出这个错误。
+
+
+本来是打算用texlive和CJK来解决中文问题的，结果一天都没有搞定，还是改用xetex了，用xelatex编译：
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\newcommand\hei{\fontspec[ExternalLocation=/usr/share/fonts/msfonts/]{simhei.ttf}}
+\newcommand\kai{\fontspec[ExternalLocation=/usr/share/fonts/msfonts/]{simkai.ttf}}
+\newcommand\sun{\fontspec[ExternalLocation=/usr/share/fonts/msfonts/]{simsun.ttc}}
+%使用系统安装的宋体
+\setromanfont{SimSun}
+\begin{document}
+<宋体>xetex 可以使用系统自带的字体，而不需要再另外生成。
+
+\hei <黑体>xetex 可以使用系统自带的字体，而不需要再另外生成。
+
+\kai <楷体>xetex 可以使用系统自带的字体，而不需要再另外生成。
+
+\sun <宋体>xetex 可以使用系统自带的字体，而不需要再另外生成。
+\end{document}
+
+
+
+
+latex: 把源文件编译成dvi；
+dvips: 从dvi文件生成ps文件；
+ps2pdf:从ps文件生成pdf文件；
+dvipdfm:直接从dvi文件生成pdf；
+pdflatex:直接从源文件生成pdf；
+bibtex：生成引文；
+texhash:刷新tex的搜索目录数据库；
+xdvi:dvi文件查看器，可重新载入新编译成的文件。
+
+
+查看安装的中文字体：
+fc-list :lang=zh
+
+
+
+
+http://www.artofproblemsolving.com/Wiki/index.php/LaTeX:Layout
+

@@ -1,0 +1,72 @@
+http://octopress.org/docs/setup/
+1. Install Git.
+2. Install Ruby 1.9.3 using either rbenv or RVM.
+
+http://octopress.org/docs/setup/rbenv/
+==============================================
+cd
+git clone git://github.com/sstephenson/rbenv.git .rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+source ~/.bash_profile
+
+rbenv install 1.9.3-p0
+rbenv rehash
+
+ruby --version
+==============================================
+
+
+
+==============================================
+git clone git://github.com/imathis/octopress.git octopress
+cd octopress    # If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).
+ruby --version  # Should report Ruby 1.9.3
+
+gem install bundler
+rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command
+bundle install
+
+rake install
+==============================================
+
+
+
+
+
+
+
+Deploying to Github Pages
+Create a new Github repository and name the repository with your user name or organization name username.github.com or organization.github.com.
+================================================
+# setup the git repo
+rake setup_github_pages
+
+# generate the web pages and deploy it on github.com
+rake new_post['xxxx']
+rake generate
+rake preview
+rake deploy
+
+# commit the source on git repo
+git add .
+git commit -m 'your message'
+git push origin source
+=================================================
+
+
+
+http://code.dblock.org/octopress-setting-up-a-blog-and-contributing-to-an-existing-one
+Setting up a Blog and Contributing to an Existing One
+=======================================================
+git clone https://github.com/yangpengg/yangpengg.github.com.git
+cd username.github.com
+git checkout source
+mkdir _deploy
+cd _deploy
+git init
+git remote add origin https://github.com/yangpengg/yangpengg.github.com.git
+git pull origin master
+cd ..
+=======================================================

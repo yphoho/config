@@ -1,0 +1,12 @@
+Empathy聊天记录删除
+Empathy聊天记录是以.log记录的，位置是：
+~/.local/share/Empathy/logs
+Empathy没有提供如何删除记录的命令。“清除”只是暂时的，如要清空（永久）清空logs文件夹中的内容。
+
+在11.04里，路径为：
+~/.local/share/TpLogger/logs
+
+Empathy关联twitter和gtalk：
+https://www.tweet.im/
+
+
