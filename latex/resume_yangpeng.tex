@@ -78,8 +78,8 @@ E-mail: yphoho@163.com \\
 \section*{主要业绩}
 
 组建了一个工作能力很强的算法团队，积极跟进普及学术界和工业界最新的研究成果，应用在业务中，为提高算法效果不断努力； \\
-研发上线的推荐算法排序模型提升用户活跃度，发信量相较之前有40\%提升，点击提升90\%以上；开发的客服回复系统，反作弊系统，极大的提高了客服部门的工作效率，减少了用户投诉；还有为VIP部门提供的排序算法，为无线提供的聊天系统都有很好的反馈； \\
-为各部门提供数据支持，方便各部门做决策，及时调整方案； \\
+研发上线的推荐算法排序模型提升用户活跃度，发信量相较之前有40\%提升，点击提升90\%以上；开发的客服自动回复系统，反作弊系统，极大的提高了客服部门的工作效率，减少了用户投诉；还有为VIP部门提供的排序算法，为无线提供的聊天系统都有很好的反馈； \\
+积极的在组内学习推广深度学习，并使用在nlp和图像相关的项目上，取得了很好的效果； \\
 
 
 
@@ -110,21 +110,23 @@ yige.ai，使用机器学习，nlp等技术开发的chatbot聊天框架，方便
 端到端的对话系统研发，正在进行的研究性项目，主要使用深度学习技术：cnn提取对话特征，rnn做对话状态追踪，cnn做意图识别，lstm做自然语言生成。 \\
 \\
 世纪佳缘，图像处理相关： \\
-验证码识别，利用深度学习识别变长验证码，参考Google识别街景门牌号的论文，使用multi-task learning同时学习验证码长度和验证码数值。基于tensorflow实现的cnn模型，线上正确率98.5\%。 \\
+验证码识别，利用深度学习识别变长验证码。参考Google识别街景门牌号的论文，使用multi-task learning同时学习验证码长度和验证码数值。基于tensorflow实现的cnn模型，线上正确率98.5\%。 \\
 颜值系统，在Google Inception-V3模型上进行fine-tuning训练，识别美女照片，把模型用于用户颜值评分。修改slim源码，离线训练模型，并提供线上实时服务。 \\
+鉴黄，识别用户上传的色情，不雅动作，异性合照等不合格照片。使用Inception模型，转化为多分类问题。使用各种image augmentation方法增加训练数据，调参优化模型效果。 \\
+生活照联系方式识别，识别用户上传生活照中嵌入的QQ号，微信号，手机号，网址等联系方式。首先尝试了Faster R-CNN，SSD识别所有文字，但是召回太低。最后采用CTPN论文中专门针对文字识别改进的模型，解决文字识别的召回问题，并以识别出来的文字框作为数据，训练一个cnn二分类模型识别是不是联系方式。 \\
 
 
 
 
 
 
-\section*{学习与关注}
-
-跟踪ImageNet进展，熟悉ImageNet效果提高过程中产生的经典模型：VGG，Inception，ResNet等； \\
-了解dl做物体检测的方法，熟悉R-CNN，Fast R-CNN，Faster R-CNN，SSD，DenseBox等模型； \\
-深入研究word2vec的原理，熟悉论文中为提高性能使用的Hierarchical Softmax和Negative Sampling方法； \\
-对增强学习感兴趣，尤其是增强学习在玩游戏上的应用。深入了解过DeepMind发表的玩Atari游戏的论文，看过AlphaGo相关的技术和论文，正在关注Visual Doom AI Competition竞赛进展； \\
-%% 对dl在DST，NMT等nlp上的应用也有关注，熟悉常见的模型，Encoder-Decoder Framework，Attention Mechanisms，Memory Mechanisms等； \\
+%% \section*{学习与关注}
+%%
+%% 跟踪ImageNet进展，熟悉ImageNet效果提高过程中产生的经典模型：VGG，Inception，ResNet等； \\
+%% 了解dl做物体检测的方法，熟悉R-CNN，Fast R-CNN，Faster R-CNN，SSD，DenseBox等模型； \\
+%% 深入研究word2vec的原理，熟悉论文中为提高性能使用的Hierarchical Softmax和Negative Sampling方法； \\
+%% 对强化学习感兴趣，尤其是强化学习在玩游戏上的应用。深入了解过DeepMind发表的玩Atari游戏的论文，看过AlphaGo相关的技术和论文，正在关注Visual Doom AI Competition竞赛进展； \\
+%% %% 对dl在DST，NMT等nlp上的应用也有关注，熟悉常见的模型，Encoder-Decoder Framework，Attention Mechanisms，Memory Mechanisms等； \\
 
 
 
