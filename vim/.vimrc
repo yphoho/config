@@ -120,8 +120,19 @@ function HeaderShell()
     normal G
 endf
 
+function HeaderC()
+    call setline(1, '#include<stdio.h>')
+    call append(1, '')
+    call append(2, '')
+    call append(3, 'int main(int argc, char *argv[]) {')
+    call append(4, '')
+    call append(5, '    return 0;')
+    call append(6, '}')
+endf
+
 autocmd bufnewfile *.py call HeaderPython()
 autocmd bufnewfile *.sh call HeaderShell()
+autocmd bufnewfile *.c call HeaderC()
 "" }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 
 
@@ -143,7 +154,7 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 "" " The following are examples of different formats supported.
 "" " Keep Plugin commands between vundle#begin/end.
@@ -162,12 +173,12 @@ Plugin 'gmarik/Vundle.vim'
 "" Plugin 'user/L9', {'name': 'newL9'}
 
 
-" YouCompleteMe need Vim 7.3.584+
-if v:version >= 704
-    Plugin 'Valloric/YouCompleteMe'
-    let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-    " let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
-endif
+"" " YouCompleteMe need Vim 7.3.584+
+"" if v:version >= 704
+""     Plugin 'Valloric/YouCompleteMe'
+""     let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+""     " let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+"" endif
 
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
