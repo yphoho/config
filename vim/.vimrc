@@ -1,5 +1,7 @@
 let mapleader = ","
 
+set nocompatible
+
 " set nu
 set nobackup
 set nowritebackup
@@ -133,6 +135,8 @@ endf
 autocmd bufnewfile *.py call HeaderPython()
 autocmd bufnewfile *.sh call HeaderShell()
 autocmd bufnewfile *.c call HeaderC()
+autocmd bufnewfile *.cc call HeaderC()
+autocmd bufnewfile *.cpp call HeaderC()
 "" }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 
 
