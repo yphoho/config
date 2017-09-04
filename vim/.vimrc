@@ -27,9 +27,15 @@ syntax on
 
 set hlsearch
 
+
 set autoindent
 set smartindent
 set cindent
+
+set cino=N-s  " no namespace indent
+set cinoptions+=g2,h2  " public, private indent 2
+set cinoptions+=L0  " no label indent
+
 
 " " File type detection for Tagbar
 " filetype on
@@ -123,7 +129,7 @@ function HeaderShell()
 endf
 
 function HeaderC()
-    call setline(1, '#include<stdio.h>')
+    call setline(1, '#include <stdio.h>')
     call append(1, '')
     call append(2, '')
     call append(3, 'int main(int argc, char *argv[]) {')
