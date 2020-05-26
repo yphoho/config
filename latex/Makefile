@@ -1,4 +1,5 @@
-exe=xetex.pdf beamer.pdf
+exe=resume_yangpeng.pdf
+# exe+=xetex.pdf beamer.pdf 
 
 xetex=xetex.tex
 beamer=beamer.tex
@@ -14,6 +15,9 @@ obj+=$(exe:%.pdf=%.toc)
 
 all: $(exe)
 
+resume_yangpeng.pdf: resume_yangpeng.tex
+	xelatex $^
+
 xetex.pdf: $(xetex)
 	xelatex $^
 
@@ -22,7 +26,7 @@ beamer.pdf: $(beamer)
 
 
 clean:
-	- $(RM) $(obj) $(exe)
+	- $(RM) $(obj) # $(exe)
 
 .PHONY: all clean
 
